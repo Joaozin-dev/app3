@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Controller</title>
+    <link rel="stylesheet" type="text/css" href="/quimica/controller/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  </head>
+  <body>
+  		<script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+      <button id="p1-left">HEHE</button>
+      <script type="module" src="/quimica/controller/joy.js"></script>
+      <script type="module">
+        import { ControllerAPI } from 'http://localhost:3000/quimica/apis/gameapi.js';
+        const controle = new ControllerAPI();
+        controle.onReady((device_id)=>{
+          controle.sendMessage(device_id,{action:'start',player:{nome:'hehe hehe',tipo:'boy boy'}});
+        });
+      </script>
+  </body>
+</html>
