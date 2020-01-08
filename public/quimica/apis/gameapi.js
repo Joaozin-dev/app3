@@ -1,5 +1,5 @@
 class ScreenAPI {
-	constructor(width,height){
+	constructor(){
 		this.socket = window.parent.hello();
 	}
 	// METODO PARA VERIFICAR SE ESTÁ TUDO CONECTADO
@@ -18,17 +18,29 @@ class ScreenAPI {
 			return f(data.device_id,data.msg);
 		});
 	}
+	// METODO PARA VERIFICAR SE O JOGADOR CONECTOU
+	onPlayerConnect(f){
+		this.socket.on('new-player',(data)=>{
+			f(data.socket);
+		});
+	}
+	// METODO PARA VERIFICAR SE O JOGADOR DESCONECTOU
+	onPlayerDisconnected(f){
+		this.socket.on('player-disconnected',(data)=>{
+			f(data.socket);
+		});
+	}
 	getControllers(){
 		var connect = this.socket;
 		return {
 			id(screenId){
 				const array = [];
-				connect.on('onController',(data)=>{
+				connect.on('controllers-ids',function(data){
 					array = data.controllersId;
 				});
-				connect.emit('getController', {screenId})
-				setTimeout(async()=>{
-					return await array;
+				connect.emit('getController',true);
+				setTimeout(()=>{
+					return array;
 				},800);
 			}
 		}
@@ -58,20 +70,33 @@ class ControllerAPI {
 			return f(data.device_id,data.msg);
 		});
 	}
+	// METODO PARA VERIFICAR SE O JOGADOR ESTA DESCONECTADO
+	onPlayerDisconnected(f){
+		this.socket.on('player-disconnected',(data)=>{
+			f(data.socket);
+		})
+	}
+	// METODO PARA VERIFICAR SE O JOGADOR CONECTOU
+	onPlayerConnect(f){
+		this.socket.on('new-player',(data)=>{
+			f(data.socket);
+		});
+	}
 	getControllers(){
 		var connect = this.socket;
 		return {
 			id(screenId){
 				const array = [];
-				connect.on('onController',(data)=>{
+				connect.on('screen-id',function(data){
 					array = data.controllersId;
 				});
-				connect.emit('getController', {screenId})
-				setTimeout(async()=>{
-					return await array;
+				connect.emit('getScreen',true);
+				setTimeout(()=>{
+					return array;
 				},800);
 			}
 		}
 	}
 }
+
 export {ScreenAPI,ControllerAPI};

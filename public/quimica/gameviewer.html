@@ -8,7 +8,16 @@
 </head>
 <body>
     <script src ="/quimica/apis/phaser.min.js"></script>
-    <script type="module" src = "/quimica/screen/game.js"></script>
+    <!-- <script type="module" src = "/quimica/screen/game.js"></script> -->
+    <script type="module">
+    	import { ScreenAPI } from 'http://localhost:3000/quimica/apis/gameapi.js';
+        const controle = new ScreenAPI();
+        controle.onReady((device_id)=>{
+          controle.onPlayerDisconnected((player_id)=>{
+            console.log(`PLAYER {${player_id}} DISCONECTADO`);
+          });
+        });
+    </script>
     <div class="container">
         <div class="scoobkrai"></div>
     </div>
