@@ -4,13 +4,9 @@ const fs = require('fs');
 
 const cors = require('cors');
 const helmet = require('helmet');
-const httpsOptions = {
-    cert:fs.readFileSync('abels-cert.pem'),
-    key:fs.readFileSync('abels-key.pem'),
-};
 
 const app = express();
-const server = require('https').createServer(httpsOptions,app);
+const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const bodyParser = require('body-parser');
 
@@ -84,6 +80,6 @@ io.on('connect',(socket)=>{
 	});
 });
 
-server.listen(443,()=>{
-    console.log("SERVIDOR LIGADO NÁ PORTA 3000");
+server.listen(process.env.PORT,()=>{
+    console.log("SERVIDOR LIGADO NÁ PORTA",process.env.PORT);
 });
