@@ -46,6 +46,9 @@ module.exports = {
 		db.ref(`conexao/${ID}`).set({ Game: 'Nenhum',Code,Socket,ID });
 		socket.emit('screen-code',{Code});
     },
+  
+  
+    
     // REMOVER UMA "SCREEN" OU SESSÃO INTEIRA
     async removeConnection(socket){
     	// CONECTA COM O FIREBASE
@@ -98,6 +101,9 @@ module.exports = {
 			}
 		}
     },
+  
+  
+    
     // SINCRONIZAR UM NOVO PLAYER NA "SCREEN"
     async syncConnection(data,socket){
     	// CONECTA COM O FIREBASE

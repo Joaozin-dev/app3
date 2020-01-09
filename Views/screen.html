@@ -24,7 +24,7 @@
     <button id="con">Ver Controles</button>
     <iframe style="width:100%; height: 82vh; border-style: none;" id="gameviewer" src="/quimica/gameviewer.html"></iframe>
     <script language="javascript">
-        const socket = io.connect('http://localhost:3000');
+        const socket = io.connect();
         const frame = document.getElementById('gameviewer');
         socket.emit('join',{type:'screen',connect: true});
         socket.on('screen-code',function(data){
