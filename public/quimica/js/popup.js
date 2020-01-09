@@ -1,11 +1,9 @@
-function PopupUserWithImage(title,html,imageUrl){
+function PopupUserWithImage(title,text,imageUrl){
   Swal.fire({
     title,
-    html,
-    imageUrl,
-    imageWidth: 400,
-    imageHeight: 200,
-    imageAlt: 'User Picture',
+    html:
+      `<img src=${imageUrl} style="width:150px; height:150; border-radius:50%"><br/>`+
+      text,
     position: 'bottom',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',

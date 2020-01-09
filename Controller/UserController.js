@@ -62,10 +62,15 @@ module.exports = {
           } else {
             res.json({
               msg: 'user not found',
-              code: 4
+              code: 2
             })
           }
         } 
+      } else {
+       res.json({
+          msg: 'user not found',
+          code: 2
+        });
       }
     })
   }
