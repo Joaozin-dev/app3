@@ -118,10 +118,10 @@ module.exports = {
       array = snapshot.val();
     });
     // FAZ UM LOOP
-    for (var i = 0; i < array.length; i++) {
+    array.forEach(item=>{
       // VARIAVEL DE APOIO
       var usucode = parseInt(data.code);
-      var dbcode = parseInt(array[i].Code);
+      var dbcode = parseInt(item.Code);
       /*
        * VERIFICA SE O CODIGO DIGITADO PELO O
        * USUARIO BATE COM ALGUM DO BANCO DE DADOS
@@ -129,7 +129,7 @@ module.exports = {
       if (usucode === dbcode) {
         var iduser = 0;
         // FAZ REFERENCIA DO JSON NO FIREBASE
-        db.ref(`conexao/${array[i].ID}/Jogadores`).once("value", snapshot => {
+        db.ref(`conexao/${item.ID}/Jogadores`).once("value", snapshot => {
           // MAPEIA O RETORNO
           snapshot.forEach(item => {
             // ATRIBUI OS ITEM VINDO A UMA VARIAVEL
@@ -144,14 +144,14 @@ module.exports = {
           // SE NÃO ESTIVER ADICIONA ELA
           jogarray.push({ ID: key, player: data.player, socket: socket.id });
           // AI ENVIA PRO BANCO DE DADOS
-          db.ref(`conexao/${array[i].ID}`).update({ Jogadores: jogarray });
+          db.ref(`conexao/${item.ID}`).update({ Jogadores: jogarray });
           // ENVIA UM SOCKET SÓ PRA QUELE SOCKET COM O EVENTO NEW-PLAYER
           socket
-            .to(array[i].Socket)
+            .to(item.Socket)
             .emit("new-player", { socket: socket.id, player: data.player });
         }
       }
-    }
+    });
   },
   // BUSCAR O SCREEN ID DE ACORDO COM OS CONTROLES
   async getScreenId(socket, data) {
@@ -166,7 +166,6 @@ module.exports = {
           players.forEach(playersitem => {
             if (playersitem.val().socket === socket.id) {
               db.ref(`conexao/${item[i].ID}`).once("value", screenId => {
-                console.log(screenId.val().Socket);
                 socket.emit("screen-id", { screenId: screenId.val().Socket });
               });
             }
@@ -195,7 +194,6 @@ module.exports = {
           );
         }
       }
-      console.log(Controllers);
       socket.emit("controllers-ids", Controllers);
     }
   },

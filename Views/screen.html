@@ -50,7 +50,7 @@
       });
       socket.on("new-player", function(data) {
         console.log(data);
-        $('nav-mobile').html($('nav-mobile').html()+`<img id="${data.player.user}" src="${data.player.photo}" style = "width:25px; height:25; border-radius:50%;"`);
+        $('#nav-mobile').html($('#nav-mobile').html()+`<img id="${data.player.user}" src="${data.player.photo}" style = "width:25px; height:25; border-radius:50%;"`);
       });
       document.querySelector("button").addEventListener("click", function() {
         socket.emit("getController", true);
