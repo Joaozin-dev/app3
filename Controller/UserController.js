@@ -43,22 +43,21 @@ module.exports = {
     return UserModel.findAll({
       attributes: ['facebook_id']
     }).then((query)=>{
-      const users = JSON.stringify(query)
-      console.log(users);
-      if(users.length >= 1){
-        users.forEach(item=>{
-          if(item.facebook_id --- req.params.id){
+      const users = JSON.parse(JSON.stringify(query));
+      if(users.length > 0){
+        for(var i = 0; i < users.length; i++){
+          if(users[i].facebook_id === req.params.id){
             res.json({
-              msg: 'user exist',
-              code: 2
-            });
-          } else {
-            res.json({
-              msg: 'not found user by facebook_id',
+              msg: 'users exist',
               code: 3
             })
+          } else {
+            res.json({
+              msg: 'user not found',
+              code: 4
+            })
           }
-        })
+        } 
       }
     })
   }
