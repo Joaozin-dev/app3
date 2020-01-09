@@ -80,6 +80,6 @@ io.on('connect',(socket)=>{
 	});
 });
 
-server.listen(process.env.PORT,()=>{
-    console.log("SERVIDOR LIGADO NÁ PORTA",process.env.PORT);
+server.listen(3000,()=>{
+    console.log("SERVIDOR LIGADO NÁ PORTA 3000");
 });

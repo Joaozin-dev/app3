@@ -1,48 +1,26 @@
-const firebase = require('../config/firebase');
-function listAllUsers(nextPageToken) {
-// List batch of users, 1000 at a time.
-	firebase.auth().listUsers(1000, nextPageToken)
-	.then(function(listUsersResult) {
-		listUsersResult.users.forEach(function(userRecord) {
-			console.log('user', userRecord.toJSON());
-		});
-		if (listUsersResult.pageToken) {
-			// List next batch of users.
-			listAllUsers(listUsersResult.pageToken);
-		}
-	})
-	.catch(function(error) {
-		console.log('Error listing users:', error);
-	});
+const UserModel = require('../Model/UserModel');
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
 }
 module.exports = {
-	store(req,res){
-		const { email,picture,name,password} = req.body;
-		firebase.auth().createUser({
-			email,
-			emailVerified:false,
-			password,
-			photoURL:picture,
-			disabled:false,
-			displayName:name
-		}).then((result)=>{
-			const {uid} = result;
-			res.json({uid,email});
-		}).catch((err)=>{
-			if(err.code === 'auth/email-already-exists'){
-				res.json({create:false,error:err.code,message:'Usuario já existe'})
-			}
-		});
-	},
-	show(req,res){
-		var token = req.body.token;
-		if(token){
-			firebase.auth().getUser(token).then((result)=>{
-				req.session.user = result.uid;
-				req.session.name = result.displayName;
-				req.session.photo = result.photoURL;
-				res.json({ok:true});
-			})
-		}
+	async store(req,res){
+        const user_senha = uuidv4();
+        const query = req.body;
+        return UserModel.create({
+            user_email:query.email,user_senha,user_nome:query.name,user_picture:query.picture.data.url,facebook_id:query.id
+        }).then(()=>{
+            console.log("Individuo adicionado com sucesso.");
+            res.send("Individuo adicionado com sucesso.")
+            req.session.fb = facebook_id,
+            req.session.email = user_email,
+            req.session.picture = user_picture
+        }).catch((err)=>{
+            console.log("Nao foi possivel inserir esse malandro.");
+            console.log(err);
+            res.json({error: {msg: 'Nao foi possivel inserir esse usuario',code:001}});
+        });
 	}
 }
