@@ -1,12 +1,13 @@
 <html>
   <head>
     <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
     <script src="https://cdn.imac-group.cf/js/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.js"></script>
-    <script src="quimica/js/sweetjs.js"></script>
-    <script type="text/javascript" src="quimica/js/popup.js"></script>
+    <script src="quimica/js/popup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
       (function(d, s, id) {
         var js,
@@ -56,8 +57,9 @@
                 .then(res => {
                   if(res.data.code !== 3){
                     fetchUserProfile();
-                  } else if(!res.data.user){
+                  } else if(res.data.user !== undefined){
                     // window.location = '/mobile';
+                    PopupUserWithImage('Continuar','Voce deseja continuar como ' + res.data.user.name,res.data.user.picture)
                   }
                 })
                 .catch(err => {
