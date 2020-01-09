@@ -48,7 +48,6 @@
 
         function facebookLogin() {
           FB.getLoginStatus(function(response) {
-            console.log(response);
             statusChangeCallback(response);
           });
         }
@@ -60,7 +59,7 @@
                 .then(res => {
                   if(res.data.code === 2){
                     fetchUserProfile();
-                  } else if(res.data.user !== undefined){
+                  } else if(res.data.user !== undefined || !res.data.user){
                     // window.location = '/mobile';
                     PopupUserWithImage('Continuar','Percebemos que voce ja tem uma conta com esse <b>Facebook</b>.<br/>Voce deseja continuar como: <b>' + res.data.user.name + '</b>',res.data.user.picture)
                   }
@@ -78,11 +77,9 @@
           FB.api(
             "/me?fields=id,name,email,gender,birthday,friends,picture",
             function(response) {
-              console.log(response);
               axios
                 .post("/user/creator", response)
                 .then(res => {
-                  console.log(response);
                   if(res.data.code === 4){
                     // window.location = '/mobile';
                   }

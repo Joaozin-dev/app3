@@ -46,19 +46,14 @@ module.exports = {
       const users = JSON.parse(JSON.stringify(query));
       if(users.length > 0){
         for(var i = 0; i < users.length; i++){
+          console.log(users[i].facebook_id);
           if(users[i].facebook_id === req.params.id){
             req.session.fb = users[i].facebook_id;
             req.session.email = users[i].user_email;
             req.session.picture = users[i].user_picture;
             req.session.name = users[i].user_name;
-            res.json({
-              user: {
-                name: users[i].user_nome,
-                picture:users[i].user_picture,
-                email:users[i].user_email,
-              },
-              code: 3
-            })
+            
+            res.send()
           } else {
             res.json({
               msg: 'user not found',
