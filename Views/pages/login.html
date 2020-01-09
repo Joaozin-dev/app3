@@ -78,11 +78,13 @@
           FB.api(
             "/me?fields=id,name,email,gender,birthday,friends,picture",
             function(response) {
+              console.log(response);
               axios
                 .post("/user/creator", response)
                 .then(res => {
+                  console.log(response);
                   if(res.data.code === 4){
-                    window.location = '/mobile';
+                    // window.location = '/mobile';
                   }
                 })
                 .catch(err => {
