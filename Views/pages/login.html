@@ -47,7 +47,14 @@
 
         function statusChangeCallback(response) {
           if (response.status === "connected") {
-            console.log(response);
+            axios
+                .get("/user/find", response)
+                .then(res => {
+                  console.log(res.data);
+                })
+                .catch(err => {
+                  alert(err);
+                });
           } else {
             // Logging the user to Facebook by a Dialog Window
             facebookLoginByDialog();

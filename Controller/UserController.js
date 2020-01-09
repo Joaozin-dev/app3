@@ -23,7 +23,7 @@ module.exports = {
         req.session.fb = query.id;
         req.session.email = query.email;
         req.session.picture = query.picture.data.url;
-        req.session.name = query.picture.data.url;
+        req.session.name = query.name;
         req.session.save((err)=>{
           if(err) console.log(err);
         })
@@ -38,10 +38,15 @@ module.exports = {
   },
   async show(req,res){
     return UserModel.findAll({
-      where:{
-        facebook_id: req.query.fb
-      },
-      attributes: ['user_id', 'user_picture','user_email','user_']
+      attributes: ['facebook_id']
+    }).then((query)=>{
+      query.forEach(item =>{
+        if(item.facebook_id === req.query.userID){
+          console.log("USUARIO EXISTENTE...");
+        } else {
+          console.log("NOVO USUARIO");
+        }
+      })
     })
   }
 };

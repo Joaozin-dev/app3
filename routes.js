@@ -24,6 +24,6 @@ routes.get("/login", (req, res) => {
 
 routes.post("/user/creator", UserController.store);
 
-// routes.get('/login/:uid',UserController.show);
+routes.get('/user/find',UserController.show);
 
 module.exports = routes;
