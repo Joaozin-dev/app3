@@ -1,108 +1,101 @@
 <html>
-<head> 
-</head>
-<body>
-<script src="https://cdn.imac-group.cf/js/jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.js"></script>
-<script>
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '461840774769140',
-      cookie     : true,  // enable cookies to allow the server to access 
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v5.0' // The Graph API version to use for the call
-    });
-}
-$(document).ready(function(){   
- 
- // add event listener on the login button
- 
- $("#login").click(function(){
+  <head> </head>
+  <body>
+    <script src="https://cdn.imac-group.cf/js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.js"></script>
+    <script>
+      (function(d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: "461840774769140",
+          cookie: true, // enable cookies to allow the server to access
+          // the session
+          xfbml: true, // parse social plugins on this page
+          version: "v5.0" // The Graph API version to use for the call
+        });
+      };
+      $(document).ready(function() {
+        // add event listener on the login button
 
-    facebookLogin();
+        $("#login").click(function() {
+          facebookLogin();
+        });
 
-   
- });
+        // add event listener on the logout button
 
- // add event listener on the logout button
+        $("#logout").click(function() {
+          $("#logout").hide();
+          $("#login").show();
+          $("#status").empty();
+          facebookLogout();
+        });
 
- $("#logout").click(function(){
+        function facebookLogin() {
+          FB.getLoginStatus(function(response) {
+            console.log(response);
+            statusChangeCallback(response);
+          });
+        }
 
-   $("#logout").hide();
-   $("#login").show();
-   $("#status").empty();
-   facebookLogout();
+        function statusChangeCallback(response) {
+          console.log(response);
+          if (response.status === "connected") {
+            $("#login").hide();
+            $("#logout").show();
+            fetchUserProfile();
+          } else {
+            // Logging the user to Facebook by a Dialog Window
+            facebookLoginByDialog();
+          }
+        }
 
- });
+        function fetchUserProfile() {
+          console.log("Welcome!  Fetching your information.... ");
+          FB.api(
+            "/me?fields=id,name,email,gender,birthday,friends,picture",
+            function(response) {
+              axios
+                .post("/user/creator", response)
+                .then(res => {
+                  console.log(res.data);
+                })
+                .catch(err => {
+                  alert(err);
+                });
+            }
+          );
+        }
 
+        function facebookLoginByDialog() {
+          FB.login(
+            function(response) {
+              statusChangeCallback(response);
+            },
+            {
+              scope:
+                "public_profile,email,user_gender,user_birthday,user_friends"
+            }
+          );
+        }
 
- function facebookLogin()
- {
-   FB.getLoginStatus(function(response) {
-       console.log(response);
-       statusChangeCallback(response);
-   });
- }
+        // logging out the user from Facebook
 
- function statusChangeCallback(response)
- {
-     console.log(response);
-     if(response.status === "connected")
-     {
-        $("#login").hide();
-        $("#logout").show(); 
-        fetchUserProfile();
-     }
-     else{
-         // Logging the user to Facebook by a Dialog Window
-         facebookLoginByDialog();
-     }
- }
-
- function fetchUserProfile()
- {
-   console.log('Welcome!  Fetching your information.... ');
-   FB.api('/me?fields=id,name,email,gender,birthday,friends,picture', function(response) {
-    axios.post('/user/creator',response)
-    .then((res)=>{
-        console.log(res.data);
-    })
-    .catch((err)=>{
-        alert(err);
-    })
-   });
- }
-
- function facebookLoginByDialog()
- {
-   FB.login(function(response) {
-      
-       statusChangeCallback(response);
-      
-   }, {scope: 'public_profile,email,user_gender,user_birthday,user_friends'});
- }
-
- // logging out the user from Facebook
-
- function facebookLogout()
- {
-   FB.logout(function(response) {
-       statusChangeCallback(response);
-   });
- }
-
-
-});
-</script>
-<button id="login">Login</button>
-<div id="status"></div>
-</body>
+        function facebookLogout() {
+          FB.logout(function(response) {
+            statusChangeCallback(response);
+          });
+        }
+      });
+    </script>
+    <button id="login">Login</button>
+    <div id="status"></div>
+  </body>
 </html>

@@ -1,63 +1,73 @@
 <!DOCTYPE html>
 <html lang="ptbr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Documento</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <style type="text/css">
-    	nav {
-    		margin-bottom: 2px;
-    	}
+      nav {
+        margin-bottom: 2px;
+      }
     </style>
-</head>
-<body>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <nav>
-	    <div class="nav-wrapper">
-	      <a class="brand-logo" id="code"></a>
-	      <ul id="nav-mobile" class="right hide-on-med-and-down"></ul>
-	    </div>
-  	</nav>
+      <div class="nav-wrapper">
+        <a class="brand-logo" id="code"></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down"></ul>
+      </div>
+    </nav>
     <button id="con">Ver Controles</button>
-    <iframe style="width:100%; height: 82vh; border-style: none;" id="gameviewer" src="/quimica/gameviewer.html"></iframe>
+    <iframe
+      style="width:100%; height: 82vh; border-style: none;"
+      id="gameviewer"
+      src="/quimica/gameviewer.html"
+    ></iframe>
     <script language="javascript">
-        const socket = io.connect();
-        const frame = document.getElementById('gameviewer');
-        socket.emit('join',{type:'screen',connect: true});
-        socket.on('screen-code',function(data){
-            document.getElementById('code').innerHTML = `<b>YOU CODE: ${data.Code}</b>`;
-        })
-        socket.on('disconnect',function(){
-            // frame.src = 'https://imac-services.tk/';
-        });
-        socket.on('player-disconnected',function(data){
-            alert(`PLAYER ${data.socket} DESCONECTADO`);
-            document.querySelector(`#${data.socket}`).innerHTML = '';
-
-        })
-        socket.on('new-player',function(data){
-            console.log(data);
-            var ul = document.querySelector('ul');
-            ul.innerHTML = ul.innerHTML+`<li id="${data.socket}" style='margin-left: 5px; margin-right:5px;'><img style = "margin-top: 7px;width:50px; marin-right: 7px; height:50px; border-radius:50%;" src = "${data.player.photo}" ></li>`;
-        })
-        document.querySelector('button').addEventListener('click',function(){
-            socket.emit('getController',true);
-        })
-        socket.on('controllers-ids',function(data){
-            console.log(data);
-        })
-        function hello() {
-            return socket;
-        }
-        document.getElementById('con').addEventListener('click',function(){
-            socket.emit('getController',true);
-        });
-        socket.on('controllers-ids',function(data){
-            console.log(data);
-        });
+      const socket = io.connect();
+      const frame = document.getElementById("gameviewer");
+      socket.emit("join", { type: "screen", connect: true });
+      socket.on("screen-code", function(data) {
+        document.getElementById(
+          "code"
+        ).innerHTML = `<b>YOU CODE: ${data.Code}</b>`;
+      });
+      socket.on("disconnect", function() {
+        // frame.src = 'https://imac-services.tk/';
+      });
+      socket.on("player-disconnected", function(data) {
+        alert(`PLAYER ${data.socket} DESCONECTADO`);
+        document.querySelector(`#${data.socket}`).innerHTML = "";
+      });
+      socket.on("new-player", function(data) {
+        console.log(data);
+        var ul = document.querySelector("ul");
+        ul.innerHTML =
+          ul.innerHTML +
+          `<li id="${data.socket}" style='margin-left: 5px; margin-right:5px;'><img style = "margin-top: 7px;width:50px; marin-right: 7px; height:50px; border-radius:50%;" src = "${data.player.photo}" ></li>`;
+      });
+      document.querySelector("button").addEventListener("click", function() {
+        socket.emit("getController", true);
+      });
+      socket.on("controllers-ids", function(data) {
+        console.log(data);
+      });
+      function hello() {
+        return socket;
+      }
+      document.getElementById("con").addEventListener("click", function() {
+        socket.emit("getController", true);
+      });
+      socket.on("controllers-ids", function(data) {
+        console.log(data);
+      });
     </script>
-</body>
+  </body>
 </html>

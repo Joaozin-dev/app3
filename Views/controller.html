@@ -1,14 +1,17 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Controller</title>
-    <link rel="stylesheet" type="text/css" href="/quimica/controller/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/quimica/controller/style.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.js"></script>
     <style type="text/css">
       body {
         margin: 0;
@@ -27,53 +30,56 @@
         align-items: center;
         text-decoration: none;
       }
-      input[type=number]::-webkit-inner-spin-button, 
-      input[type=number]::-webkit-outer-spin-button { 
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          margin: 0; 
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
       }
     </style>
   </head>
   <body>
     <script src="quimica/js/sweetjs.js"></script>
-    <script type="text/javascript" src = "quimica/js/popup.js"></script>
-      <div class="code-show">
-        <input type="number" id="code" placeholder="You Code">
-        <button id="send">Enviar</button>
-        <img id="img" style="width:100px; height: 100px;" src="<%= photo%>">
-        <!--iframe style="width:100%; height: 82vh; border-style: none;" id="gameviewer" src="/quimica/gamecontroller.html"></iframe-->
-        <button id="con">Ver Controles</button>
-      </div>
-      <script>
-        const socket = io();
-        var lastCode = '';
-        document.getElementById('con').addEventListener('click',function(){
-            socket.emit('getScreen',true);
+    <script type="text/javascript" src="quimica/js/popup.js"></script>
+    <div class="code-show">
+      <input type="number" id="code" placeholder="You Code" />
+      <button id="send">Enviar</button>
+      <img id="img" style="width:100px; height: 100px;" src="<%= photo%>" />
+      <!--iframe style="width:100%; height: 82vh; border-style: none;" id="gameviewer" src="/quimica/gamecontroller.html"></iframe-->
+      <button id="con">Ver Controles</button>
+    </div>
+    <script>
+      const socket = io();
+      var lastCode = "";
+      document.getElementById("con").addEventListener("click", function() {
+        socket.emit("getScreen", true);
+      });
+      socket.on("screen-id", function(data) {
+        console.log(data);
+      });
+      document.getElementById("send").addEventListener("click", function() {
+        const el = document.getElementById("code");
+        const code = el.value;
+        socket.emit("new-controller", {
+          code,
+          player: {
+            user: "<%= user%>",
+            photo: "<%= photo%>",
+            name: "<%= name%>"
+          }
         });
-        socket.on('screen-id',function(data){
-            console.log(data);
-        });
-        document.getElementById('send').addEventListener('click',function(){
-            const el = document.getElementById('code');
-            const code = el.value;
-            socket.emit('new-controller',{code,player:{
-                user: '<%= user%>',
-                photo:'<%= photo%>',
-                name:'<%= name%>'
-            }});
-            lastCode = code;
-            el.value = '';
-        });
-        socket.on('remove-connection',function(){
-            alert('Tela Desconectada');
-            const el = document.getElementById('code');
-            el.value = lastCode;
-        })
-        function hello() {
-            return socket;
-        }
-      </script>
+        lastCode = code;
+        el.value = "";
+      });
+      socket.on("remove-connection", function() {
+        alert("Tela Desconectada");
+        const el = document.getElementById("code");
+        el.value = lastCode;
+      });
+      function hello() {
+        return socket;
+      }
+    </script>
   </body>
 </html>
