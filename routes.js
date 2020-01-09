@@ -10,6 +10,10 @@ routes.get("/", (req, res) => {
 });
 // routes.post('/validate',UserController.show);
 
+routes.get("/privacidade",(req,res)=>{
+  res.send("TUDO SEU, MEU")
+})
+
 routes.get("/mobile",UserNotSession, (req, res) => {
   res.render("controller.html", {
     fb: req.session.fb,
