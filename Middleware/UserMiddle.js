@@ -4,7 +4,8 @@ module.exports = {
     if (req.session.fb) {
       next();
     } else {
-      res.redirect("/login");
+      res.send(req.session.fb)
+      // res.redirect("/login");
     }
   }
 };

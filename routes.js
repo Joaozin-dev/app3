@@ -10,19 +10,19 @@ routes.get("/", (req, res) => {
 });
 // routes.post('/validate',UserController.show);
 
-routes.get("/mobile", (req, res) => {
+routes.get("/mobile",UserInSession, (req, res) => {
   res.render("controller.html", {
-    user: req.session.user,
+    fb: req.session.fb,
     name: req.session.name,
     photo: req.session.photo
   });
 });
 
-routes.get("/login", UserInSession, (req, res) => {
+routes.get("/login", (req, res) => {
   res.render("pages/login.html");
 });
 
-routes.get("/user/creator", UserController.store);
+routes.post("/user/creator", UserController.store);
 
 // routes.get('/login/:uid',UserController.show);
 

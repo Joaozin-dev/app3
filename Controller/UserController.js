@@ -10,27 +10,26 @@ module.exports = {
   async store(req, res) {
     const user_senha = uuidv4();
     const query = req.body;
-    req.session.fb = 1234567;
-    // return UserModel.create({
-    //   user_email: query.email,
-    //   user_senha,
-    //   user_nome: query.name,
-    //   user_picture: query.picture.data.url,
-    //   facebook_id: query.id
-    // })
-    //   .then(() => {
-    //     console.log("Individuo adicionado com sucesso.");
-    //     res.send("Individuo adicionado com sucesso.");
-    //     (req.session.fb = facebook_id),
-    //       (req.session.email = user_email),
-    //       (req.session.picture = user_picture);
-    //   })
-    //   .catch(err => {
-    //     console.log("Nao foi possivel inserir esse malandro.");
-    //     console.log(err);
-    //     res.json({
-    //       error: { msg: "Nao foi possivel inserir esse usuario", code: 001 }
-    //     });
-    //   });
+    return UserModel.create({
+      user_email: query.email,
+      user_senha,
+      user_nome: query.name,
+      user_picture: query.picture.data.url,
+      facebook_id: query.id
+    })
+      .then(() => {
+        console.log("Individuo adicionado com sucesso.");
+        res.send("Individuo adicionado com sucesso.");
+        (req.session.fb = facebook_id),
+          (req.session.email = user_email),
+          (req.session.picture = user_picture);
+      })
+      .catch(err => {
+        console.log("Nao foi possivel inserir esse malandro.");
+        console.log(err);
+        res.json({
+          error: { msg: "Nao foi possivel inserir esse usuario", code: 1 }
+        });
+      });
   }
 };
