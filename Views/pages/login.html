@@ -62,7 +62,7 @@
                     fetchUserProfile();
                   } else if(res.data.user !== undefined){
                     // window.location = '/mobile';
-                    PopupUserWithImage('Continuar','Voce deseja continuar como ' + res.data.user.name,res.data.user.picture)
+                    PopupUserWithImage('Continuar','Percebemos <b>' + res.data.user.name + '</b>',res.data.user.picture)
                   }
                 })
                 .catch(err => {

@@ -1,7 +1,7 @@
-function PopupUserWithImage(title,text,imageUrl){
+function PopupUserWithImage(title,html,imageUrl){
   Swal.fire({
     title,
-    text,
+    html,
     imageUrl,
     imageWidth: 400,
     imageHeight: 200,
@@ -11,9 +11,9 @@ function PopupUserWithImage(title,text,imageUrl){
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Sim, desejo',
-    cancelButtonText: 'No, cancel!',
+    cancelButtonText: 'Nao',
     showClass: {
-      popup: 'animated fadeInUp'
+      popup: 'animated fadeInUp faster'
     },
     hideClass: {
       popup: 'animated fadeOutDown faster'
