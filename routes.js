@@ -11,7 +11,7 @@ routes.get('/',(req,res)=>{
 });
 // routes.post('/validate',UserController.show);
 
-routes.get('/mobile',UserInSession,(req,res)=>{
+routes.get('/mobile',(req,res)=>{
 	res.render('controller.html',{
 		user: req.session.user,
 		name:req.session.name,
@@ -19,7 +19,7 @@ routes.get('/mobile',UserInSession,(req,res)=>{
 	});
 });
 
-routes.get('/login',(req,res)=>{
+routes.get('/login',UserInSession,(req,res)=>{
 	res.render('pages/login.html');
 });
 
