@@ -46,11 +46,8 @@
         }
 
         function statusChangeCallback(response) {
-          console.log(response);
           if (response.status === "connected") {
-            $("#login").hide();
-            $("#logout").show();
-            fetchUserProfile();
+            console.log(response);
           } else {
             // Logging the user to Facebook by a Dialog Window
             facebookLoginByDialog();
@@ -58,7 +55,6 @@
         }
 
         function fetchUserProfile() {
-          console.log("Welcome!  Fetching your information.... ");
           FB.api(
             "/me?fields=id,name,email,gender,birthday,friends,picture",
             function(response) {

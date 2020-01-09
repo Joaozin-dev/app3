@@ -13,7 +13,7 @@ const bodyParser = require("body-parser");
 const routes = require("./routes");
 const session = require("express-session");
 
-// app.use(helmet());
+app.use(helmet());
 app.set("trust proxy", 1);
 app.use(
   session({

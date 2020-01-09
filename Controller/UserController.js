@@ -20,9 +20,13 @@ module.exports = {
       .then(() => {
         console.log("Individuo adicionado com sucesso.");
         res.send("Individuo adicionado com sucesso.");
-        (req.session.fb = facebook_id),
-          (req.session.email = user_email),
-          (req.session.picture = user_picture);
+        req.session.fb = query.id;
+        req.session.email = query.email;
+        req.session.picture = query.picture.data.url;
+        req.session.name = query.picture.data.url;
+        req.session.save((err)=>{
+          if(err) console.log(err);
+        })
       })
       .catch(err => {
         console.log("Nao foi possivel inserir esse malandro.");
@@ -31,5 +35,13 @@ module.exports = {
           error: { msg: "Nao foi possivel inserir esse usuario", code: 1 }
         });
       });
+  },
+  async show(req,res){
+    return UserModel.findAll({
+      where:{
+        facebook_id: req.query.fb
+      },
+      attributes: ['user_id', 'user_picture','user_email','user_']
+    })
   }
 };

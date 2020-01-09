@@ -13,8 +13,8 @@ routes.get("/", (req, res) => {
 routes.get("/mobile",UserInSession, (req, res) => {
   res.render("controller.html", {
     fb: req.session.fb,
-    name: req.session.name,
-    photo: req.session.photo
+    name: req.session.email,
+    photo: req.session.picture
   });
 });
 
