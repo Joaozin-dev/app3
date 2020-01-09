@@ -39,14 +39,11 @@ module.exports = {
   async show(req,res){
     return UserModel.findAll({
       attributes: ['facebook_id']
-    }).then((query)=>{
-      query.forEach(item =>{
-        if(item.facebook_id === req.query.userID){
-          console.log("USUARIO EXISTENTE...");
-        } else {
-          console.log("NOVO USUARIO");
-        }
-      })
+    }).then((peido)=>{
+      console.log()
+      if(){
+        
+      }
     })
   }
 };
