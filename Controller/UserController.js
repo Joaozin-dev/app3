@@ -40,7 +40,7 @@ module.exports = {
       });
   },
   async show(req,res){
-    var response = null;s
+    var response = null;
     UserModel.findAll({
       attributes: ['facebook_id','user_nome','user_email','user_picture']
     }).then((query)=>{
@@ -66,11 +66,14 @@ module.exports = {
               code: 2
             }
           }
-          res.json(response);
         }
       } else {
-        res.json(response);
+        response = {
+          msg: 'user not found',
+          code: 2
+        }
       }
+      res.json(response);
     })
   }
 };

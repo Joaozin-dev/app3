@@ -17,6 +17,7 @@
     </style>
   </head>
   <body>
+    <script src="https://cdn.imac-group.cf/js/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <nav>
@@ -49,10 +50,7 @@
       });
       socket.on("new-player", function(data) {
         console.log(data);
-        var ul = document.querySelector("ul");
-        ul.innerHTML =
-          ul.innerHTML +
-          `<li id="${data.socket}" style='margin-left: 5px; margin-right:5px;'><img style = "margin-top: 7px;width:50px; marin-right: 7px; height:50px; border-radius:50%;" src = "${data.player.photo}" ></li>`;
+        $('ul').append(`<img src="${data.user.photo}" style = "width:25px; height:25; border-radius:50%;"`);
       });
       document.querySelector("button").addEventListener("click", function() {
         socket.emit("getController", true);
