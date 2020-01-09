@@ -41,14 +41,22 @@ module.exports = {
   },
   async show(req,res){
     return UserModel.findAll({
-      attributes: ['facebook_id']
+      attributes: ['facebook_id','user_nome','user_email','user_picture']
     }).then((query)=>{
       const users = JSON.parse(JSON.stringify(query));
       if(users.length > 0){
         for(var i = 0; i < users.length; i++){
           if(users[i].facebook_id === req.params.id){
+            req.session.fb = users[i].facebook_id;
+            req.session.email = users[i].user_email;
+            req.session.picture = users[i].user_picture;
+            req.session.name = users[i].user_name;
             res.json({
-              msg: 'users exist',
+              user: {
+                name: users[i].user_nome,
+                picture:users[i].user_picture,
+                email:users[i].user_email,
+              },
               code: 3
             })
           } else {
