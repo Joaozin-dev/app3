@@ -50,7 +50,7 @@
       <button id="con">Ver Controles</button>
     </div>
     <script>
-      const socket = io();
+      const socket = io('https://airgames.tk');
       var lastCode = "";
       document.getElementById("con").addEventListener("click", function() {
         socket.emit("getScreen", true);

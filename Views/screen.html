@@ -31,7 +31,7 @@
       src="/quimica/gameviewer.html"
     ></iframe>
     <script language="javascript">
-      const socket = io.connect();
+      const socket = io('https://airgames.tk');
       const frame = document.getElementById("gameviewer");
       socket.emit("join", { type: "screen", connect: true });
       socket.on("screen-code", function(data) {

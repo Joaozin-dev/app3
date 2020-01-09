@@ -22,7 +22,7 @@ routes.get("/login", UserInSession, (req, res) => {
   res.render("pages/login.html");
 });
 
-routes.post("/user/creator", UserController.store);
+routes.get("/user/creator", UserController.store);
 
 // routes.get('/login/:uid',UserController.show);
 
