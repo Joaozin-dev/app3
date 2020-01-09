@@ -6,7 +6,18 @@ function PopupUserWithImage(title,text,imageUrl){
     imageWidth: 400,
     imageHeight: 200,
     imageAlt: 'User Picture',
-    position: 'bottom'
+    position: 'bottom',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, desejo',
+    cancelButtonText: 'No, cancel!',
+    showClass: {
+      popup: 'animated fadeInUp'
+    },
+    hideClass: {
+      popup: 'animated fadeOutDown faster'
+    }
   })
 }
 
