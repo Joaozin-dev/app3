@@ -118,7 +118,7 @@ module.exports = {
       array = snapshot.val();
     });
     // FAZ UM LOOP
-    array.forEach(item=>{
+    array.forEach((item)=>{
       // VARIAVEL DE APOIO
       var usucode = parseInt(data.code);
       var dbcode = parseInt(item.Code);
