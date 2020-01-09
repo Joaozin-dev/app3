@@ -19,7 +19,10 @@ module.exports = {
     })
       .then(() => {
         console.log("Individuo adicionado com sucesso.");
-        res.send("Individuo adicionado com sucesso.");
+        res.json({
+          msg: 'user success add',
+          code: 4
+        });
         req.session.fb = query.id;
         req.session.email = query.email;
         req.session.picture = query.picture.data.url;
@@ -39,10 +42,18 @@ module.exports = {
   async show(req,res){
     return UserModel.findAll({
       attributes: ['facebook_id']
-    }).then((peido)=>{
-      console.log()
-      if(){
-        
+    }).then((query)=>{
+      if(query.lenth > 0){
+        query.forEach(item=>{
+          if(item.facebook_id === req.query.userID){
+            console.log("OKOK");
+          }
+        })
+      } else {
+        res.json({
+          msg: 'not found user by facebook_id',
+          code: 3
+        })
       }
     })
   }

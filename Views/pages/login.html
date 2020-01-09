@@ -50,7 +50,9 @@
             axios
                 .get("/user/find", response)
                 .then(res => {
-                  console.log(res.data);
+                  if(res.data.code === 3){
+                    fetchUserProfile();
+                  }
                 })
                 .catch(err => {
                   alert(err);
@@ -68,7 +70,9 @@
               axios
                 .post("/user/creator", response)
                 .then(res => {
-                  console.log(res.data);
+                  if(res.data.code === 4){
+                    window.location = '/mobile';
+                  }
                 })
                 .catch(err => {
                   alert(err);
