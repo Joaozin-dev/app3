@@ -10,7 +10,7 @@ module.exports = {
   async store(req, res) {
     const user_senha = uuidv4();
     const query = req.body;
-    return UserModel.create({
+    UserModel.create({
       user_email: query.email,
       user_senha,
       user_nome: query.name,
@@ -40,32 +40,36 @@ module.exports = {
       });
   },
   async show(req,res){
-    return UserModel.findAll({
+    var response = null;s
+    UserModel.findAll({
       attributes: ['facebook_id','user_nome','user_email','user_picture']
     }).then((query)=>{
       const users = JSON.parse(JSON.stringify(query));
       if(users.length > 0){
         for(var i = 0; i < users.length; i++){
-          console.log(users[i].facebook_id);
+          console.log(users[i].facebook_id)
           if(users[i].facebook_id === req.params.id){
             req.session.fb = users[i].facebook_id;
             req.session.email = users[i].user_email;
             req.session.picture = users[i].user_picture;
             req.session.name = users[i].user_name;
-            
-            res.send()
+            response = {user: {
+                name: users[i].user_nome,
+                picture:users[i].user_picture,
+                email:users[i].user_email,
+              },
+              code: 3
+            }
           } else {
-            res.json({
+            response = {
               msg: 'user not found',
               code: 2
-            })
+            }
           }
-        } 
+          res.json(response);
+        }
       } else {
-       res.json({
-          msg: 'user not found',
-          code: 2
-        });
+        res.json(response);
       }
     })
   }
