@@ -48,7 +48,7 @@
         function statusChangeCallback(response) {
           if (response.status === "connected") {
             axios
-                .get("/user/find", response)
+                .get("/user/find/"+response.authResponse.userID, response)
                 .then(res => {
                   if(res.data.code === 3){
                     fetchUserProfile();
@@ -71,7 +71,7 @@
                 .post("/user/creator", response)
                 .then(res => {
                   if(res.data.code === 4){
-                    window.location = '/mobile';
+                    // window.location = '/mobile';
                   }
                 })
                 .catch(err => {

@@ -44,10 +44,9 @@ module.exports = {
       attributes: ['facebook_id']
     }).then((query)=>{
       if(query.lenth > 0){
-        query.forEach(item=>{
-          if(item.facebook_id === req.query.userID){
-            console.log("OKOK");
-          }
+        res.json({
+          msg: 'user exist',
+          code: 2
         })
       } else {
         res.json({
