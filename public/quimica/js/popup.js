@@ -18,6 +18,14 @@ function PopupUserWithImage(title,text,imageUrl){
     hideClass: {
       popup: 'animated fadeOutDown faster'
     }
+  }).then((result)=>{
+      if(result.value){
+        window.location = '/mobile';
+      } else {
+        axios
+        .get("/user/cancel/")
+        .then(res => {}).catch(err => {alert(err);});
+      }
   })
 }
 
