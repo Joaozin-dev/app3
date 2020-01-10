@@ -26,7 +26,6 @@ module.exports = {
         req.session.fb = query.id;
         req.session.email = query.email;
         req.session.picture = query.picture.data.url;
-        req.session.name = query.name;
         req.session.save((err)=>{
           if(err) console.log(err);
         })

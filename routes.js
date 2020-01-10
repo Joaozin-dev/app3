@@ -18,9 +18,8 @@ routes.get("/privacidade",(req,res)=>{
 routes.get("/mobile",UserNotSession, (req, res) => {
   res.render("controller.html", {
     fb: req.session.fb,
-    email: req.session.email,
-    photo: req.session.picture,
-    name: req.session.name
+    name: req.session.email,
+    photo: req.session.picture
   });
 });
 
