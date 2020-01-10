@@ -85,6 +85,11 @@
         $(".connect").click(function() {
           PopupCode();
         });
+        $('.exit-account').click(function(){
+          axios.get("/user/cancel").then(function(result) {
+            window.location = '/login';
+          });
+        })
         axios.get("/game/list").then(function(result) {
           const { data } = result;
           data.forEach(function(item) {
