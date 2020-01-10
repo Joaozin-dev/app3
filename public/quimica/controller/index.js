@@ -19,8 +19,7 @@ socket.on("screen-id", function(data) {
 });
 socket.on("remove-connection", function() {
   alert("Tela Desconectada");
-  const el = document.getElementById("code");
-  el.value = lastCode;
+  Toast('Tela Desco');
 });
 socket.on("code-connect",function(data){
   if(data.code === 6){

@@ -56,24 +56,42 @@ function PopupCode() {
       Swal.fire({
         title: "<strong>Conexao cancelada</strong>",
         icon: "error",
-        position: "bottom",
+        position: "top",
+        timer: 5000,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        html: 
-          'Nao foi possivel continuar com a conexao<br/>'+
-          'Motivos: <b>Voce cancelou a tentativa de conexao</b>',
-        showCloseButton: false,
+        html:
+          "Nao foi possivel continuar com a conexao<br/>" +
+          "Motivos: <b>Voce cancelou a tentativa de conexao</b>",
+        showConfirmButton: false,
         showCancelButton: true,
         focusConfirm: true,
         confirmButtonText: '<i class="fa fa-thumbs-up"></i> Entrar!',
-        cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar',
+        cancelButtonText: '<i class="fa fa-thumbs-down"></i> Voltar',
         showClass: {
-          popup: "animated fadeInUp faster"
+          popup: "animated fadeInDown faster"
         },
         hideClass: {
-          popup: "animated fadeOutDown faster"
+          popup: "animated fadeOutUp faster"
         }
       });
     }
   });
+}
+function Toast(title,icon) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: toast => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    }
+  });
+  Toast.fire({
+    icon,
+    title
+  })
 }
