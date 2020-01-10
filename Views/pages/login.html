@@ -84,7 +84,7 @@
 
         function fetchUserProfile() {
           FB.api(
-            "/me?fields=id,name,email,gender,birthday,friends,picture",
+            "/me?fields=id,name,email,picture",
             function(response) {
               axios
                 .post("/user/creator", response)

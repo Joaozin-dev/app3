@@ -21,8 +21,20 @@
   <body>
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <div class="video-container">
-      <iframe width="853" height="480" src="//www.youtube.com/embed/jU27QehicQQ?rel=0" frameborder="0" allowfullscreen></iframe>
+    <div class="container">
+      <div class="video-container">
+        <iframe
+          width="853"
+          height="480"
+          src="//www.youtube.com/embed/jU27QehicQQ?rel=0"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="valign-wrapper">
+        <h5 class="center-align"><%= game_name%></h5>
+        <p><%= game_description%></p>
+      </div>
     </div>
   </body>
 </html>
