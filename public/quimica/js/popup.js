@@ -52,12 +52,15 @@ function PopupCode() {
   }).then(function(result) {
     if (result.value) {
       Swal.fire({
-        title: "<strong>Digite o codigo</strong>",
-        icon: "error",
+        title: "<strong>Codigo Encontrado</strong>",
+        icon: "success",
         position: "top",
+        timer: 2000,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        html: `<input type="number" placeholder="Seu Codigo">`,
+        html: 
+          'Tela Conectada com sucesso<br/>'+
+          'Para jogar escolha um jogo',
         showCloseButton: true,
         showCancelButton: false,
         focusConfirm: true,
