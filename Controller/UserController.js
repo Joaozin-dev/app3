@@ -52,7 +52,6 @@ module.exports = {
       const users = JSON.parse(JSON.stringify(query));
       if (users.length > 0) {
         for (var i = 0; i < users.length; i++) {
-          console.log(users[i].facebook_id);
           if (users[i].facebook_id === req.params.id) {
             req.session.fb = users[i].facebook_id;
             req.session.email = users[i].user_email;
