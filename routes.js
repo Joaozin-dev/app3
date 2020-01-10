@@ -9,7 +9,6 @@ const { UserInSession , UserNotSession } = require("./Middleware/UserMiddle");
 routes.get("/", (req, res) => {
   res.render("screen.html");
 });
-// routes.post('/validate',UserController.show);
 
 routes.get("/privacidade",(req,res)=>{
   res.send("TUDO SEU, MEU")
