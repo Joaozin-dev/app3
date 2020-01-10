@@ -37,7 +37,7 @@ function PopupCode() {
     position: "bottom",
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    html: `<input type="number" placeholder="Seu Codigo">`,
+    html: `<input type="number" id="code" placeholder="Seu Codigo">`,
     showCloseButton: true,
     showCancelButton: false,
     focusConfirm: true,
@@ -51,26 +51,27 @@ function PopupCode() {
     }
   }).then(function(result) {
     if (result.value) {
+      connect($("#code").val());
+    } else {
       Swal.fire({
-        title: "<strong>Codigo Encontrado</strong>",
-        icon: "success",
-        position: "top",
-        timer: 2000,
+        title: "<strong>Conexao cancelada</strong>",
+        icon: "error",
+        position: "bottom",
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         html: 
-          'Tela Conectada com sucesso<br/>'+
-          'Para jogar escolha um jogo',
-        showCloseButton: true,
-        showCancelButton: false,
+          'Nao foi possivel continuar com a conexao<br/>'+
+          'Motivos: <b>Voce cancelou a tentativa de conexao</b>',
+        showCloseButton: false,
+        showCancelButton: true,
         focusConfirm: true,
         confirmButtonText: '<i class="fa fa-thumbs-up"></i> Entrar!',
         cancelButtonText: '<i class="fa fa-thumbs-down"></i> Cancelar',
         showClass: {
-          popup: "animated fadeInDown faster"
+          popup: "animated fadeInUp faster"
         },
         hideClass: {
-          popup: "animated fadeOutUp faster"
+          popup: "animated fadeOutDown faster"
         }
       });
     }

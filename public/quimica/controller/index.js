@@ -1,14 +1,6 @@
 const socket = io("https://airgames.tk");
-var lastCode = "";
-document.getElementById("con").addEventListener("click", function() {
-  socket.emit("getScreen", true);
-});
-socket.on("screen-id", function(data) {
-  console.log(data);
-});
-document.getElementById("send").addEventListener("click", function() {
-  const el = document.getElementById("code");
-  const code = el.value;
+
+function connect(code){
   socket.emit("new-controller", {
     code,
     player: {
@@ -17,13 +9,23 @@ document.getElementById("send").addEventListener("click", function() {
       name: "<%= name%>"
     }
   });
-  lastCode = code;
-  el.value = "";
+}
+
+document.getElementById("con").addEventListener("click", function() {
+  socket.emit("getScreen", true);
+});
+socket.on("screen-id", function(data) {
+  console.log(data);
 });
 socket.on("remove-connection", function() {
   alert("Tela Desconectada");
   const el = document.getElementById("code");
   el.value = lastCode;
+});
+socket.on("code-connect",function(data){
+  if(data.code === 6){
+    
+  }
 });
 function hello() {
   return socket;

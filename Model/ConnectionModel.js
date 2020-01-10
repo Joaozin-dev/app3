@@ -91,12 +91,10 @@ module.exports = {
         });
         for (var e = 0; e < jogArray.length; e++) {
           if (jogArray[e].socket === socket.id) {
-            socket
-              .to(array[i].Socket)
-              .emit("player-disconnected", {
-                socket: socket.id,
-                player: jogArray[e].player.uid
-              });
+            socket.to(array[i].Socket).emit("player-disconnected", {
+              socket: socket.id,
+              player: jogArray[e].player.uid
+            });
             db.ref(
               `conexao/${array[i].ID}/Jogadores/${jogArray[e].ID}`
             ).remove();
@@ -118,7 +116,7 @@ module.exports = {
       array = snapshot.val();
     });
     // FAZ UM LOOP
-    array.forEach((item)=>{
+    array.forEach(item => {
       // VARIAVEL DE APOIO
       var usucode = parseInt(data.code);
       var dbcode = parseInt(item.Code);
@@ -139,7 +137,7 @@ module.exports = {
         });
         // VERIFICA SE O SOCKET ID ESTA NESSA VARIAVEL
         var key = parseInt(iduser);
-        
+
         if (!SExist(jogarray, socket.id)) {
           // SE NÃO ESTIVER ADICIONA ELA
           jogarray.push({ ID: key, player: data.player, socket: socket.id });
@@ -149,11 +147,17 @@ module.exports = {
           socket
             .to(item.Socket)
             .emit("new-player", { socket: socket.id, player: data.player });
-          
-          socket.emit('code-connect')
+
+          socket.emit("code-connect", {
+            msg: "code exist",
+            code: 6
+          });
         }
       } else {
-        socket.emit('code-not-exist')
+        socket.emit("code-connect", {
+          msg: "code not exist",
+          code: 7
+        });
       }
     });
   },
