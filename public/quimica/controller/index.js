@@ -18,8 +18,7 @@ socket.on("screen-id", function(data) {
   console.log(data);
 });
 socket.on("remove-connection", function() {
-  alert("Tela Desconectada");
-  Toast('Tela Desco');
+  Toast("Tela Desconectada","error");
 });
 socket.on("code-connect",function(data){
   if(data.code === 6){
