@@ -33,6 +33,8 @@ routes.post("/user/creator", UserController.store);
 
 routes.get("/user/find/:id",UserController.show);
 
+routes.get("/user/historic/:id",);
+
 routes.get("/user/cancel",(req,res)=>{
   req.session.destroy(function(err) {
      if(err) console.log(err);
