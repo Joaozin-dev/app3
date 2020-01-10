@@ -1,4 +1,4 @@
-function PopupUserWithImage(title, text, imageUrl) {
+function PopupUserWithImage(facebookLogout,title, text, imageUrl) {
   Swal.fire({
     title,
     html:
@@ -22,7 +22,9 @@ function PopupUserWithImage(title, text, imageUrl) {
     } else {
       axios
         .get("/user/cancel/")
-        .then(res => {})
+        .then(res => {
+          facebookLogout();
+        })
         .catch(err => {
           alert(err);
         });

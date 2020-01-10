@@ -40,15 +40,6 @@
           facebookLogin();
         });
 
-        // add event listener on the logout button
-
-        $("#logout").click(function() {
-          $("#logout").hide();
-          $("#login").show();
-          $("#status").empty();
-          facebookLogout();
-        });
-
         function facebookLogin() {
           FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
@@ -65,6 +56,7 @@
                 } else if (res.data.user !== undefined || !res.data.user) {
                   // window.location = '/mobile';
                   PopupUserWithImage(
+                    facebookLogout,
                     "Continuar",
                     "Percebemos que voce ja tem uma conta com esse <b>Facebook</b>.<br/>Voce deseja continuar como: <b>" +
                       res.data.user.name +
@@ -83,21 +75,18 @@
         }
 
         function fetchUserProfile() {
-          FB.api(
-            "/me?fields=id,name,email,picture",
-            function(response) {
-              axios
-                .post("/user/creator", response)
-                .then(res => {
-                  if (res.data.code === 4) {
-                    window.location = "/mobile";
-                  }
-                })
-                .catch(err => {
-                  alert(err);
-                });
-            }
-          );
+          FB.api("/me?fields=id,name,email,picture", function(response) {
+            axios
+              .post("/user/creator", response)
+              .then(res => {
+                if (res.data.code === 4) {
+                  window.location = "/mobile";
+                }
+              })
+              .catch(err => {
+                alert(err);
+              });
+          });
         }
 
         function facebookLoginByDialog() {
@@ -107,7 +96,7 @@
             },
             {
               scope:
-                "public_profile,email,user_gender,user_birthday,user_friends"
+                "public_profile,email,picture"
             }
           );
         }
