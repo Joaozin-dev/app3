@@ -1,7 +1,8 @@
 const routes = require("express").Router();
+const sql = require("./connec-sql.js");
 
 const UserController = require("./Controller/UserController");
-const sql = require("./connec-sql.js");
+const GameController = require("./Controller/GameController");
 
 const { UserInSession , UserNotSession } = require("./Middleware/UserMiddle");
 
@@ -17,8 +18,9 @@ routes.get("/privacidade",(req,res)=>{
 routes.get("/mobile",UserNotSession, (req, res) => {
   res.render("controller.html", {
     fb: req.session.fb,
-    name: req.session.email,
-    photo: req.session.picture
+    email: req.session.email,
+    photo: req.session.picture,
+    name: req.session.name
   });
 });
 
@@ -36,5 +38,7 @@ routes.get("/user/cancel",(req,res)=>{
      res.send('cancel...');
   })
 })
+
+routes.get("/game/list",GameController.index);
 
 module.exports = routes;

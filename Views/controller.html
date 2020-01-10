@@ -29,13 +29,10 @@
     <ul id="slide-out" class="sidenav">
       <li>
         <div class="user-view">
-          <div class="background">
-            <img src="images/office.jpg" />
-          </div>
-          <a href="#user"><img class="circle" src="images/yuna.jpg"/></a>
-          <a href="#name"><span class="white-text name">John Doe</span></a>
+          <a href="#user"><img class="circle" src="<%=photo%>"/></a>
+          <a href="#name"><span class="white-text name" id="name"></span></a>
           <a href="#email"
-            ><span class="white-text email">jdandturk@gmail.com</span></a
+            ><span class="black-text email"><%=name%></span></a
           >
         </div>
       </li>
@@ -80,6 +77,7 @@
       document.addEventListener("DOMContentLoaded", function() {
         var elems = document.querySelectorAll(".sidenav");
         var instances = M.Sidenav.init(elems);
+        $('#name').html('<%=name%>');
       });
     </script>
   </body>
