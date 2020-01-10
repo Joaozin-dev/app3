@@ -139,7 +139,7 @@ module.exports = {
         });
         // VERIFICA SE O SOCKET ID ESTA NESSA VARIAVEL
         var key = parseInt(iduser);
-
+        
         if (!SExist(jogarray, socket.id)) {
           // SE NÃO ESTIVER ADICIONA ELA
           jogarray.push({ ID: key, player: data.player, socket: socket.id });
@@ -149,7 +149,11 @@ module.exports = {
           socket
             .to(item.Socket)
             .emit("new-player", { socket: socket.id, player: data.player });
+          
+          socket.emit('code-connect')
         }
+      } else {
+        socket.emit('code-not-exist')
       }
     });
   },
