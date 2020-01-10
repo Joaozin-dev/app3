@@ -21,6 +21,9 @@
   <body>
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.imac-group.cf/js/jquery-3.4.1.min.js"></script>
+    <script src="/quimica/js/sweetjs.js"></script>
+    <script src="/quimica/js/popup.js"></script>
     <div class="container">
       <div class="video-container">
         <iframe
@@ -37,9 +40,25 @@
       <div class="valign-wrapper">
         <p><%= game_description%></p>
       </div>
-      <div>
-        
-      </div>
+      <div class="button-context"></div>
     </div>
+    <script>
+      if (localStorage.getItem("session") === null) {
+        $(".button-context").html(`
+          <button id="nsession" class="btn red darken-2">
+            Entre em uma sessao para jogar!
+          </button>
+        `);
+      } else {
+        $(".button-context").html(`
+          <button class="btn green darken-2">
+            Jogar Agora!
+          </button>
+        `);
+      }
+      $('#nsession').click(function(){
+        PopupCode();
+      })
+    </script>
   </body>
 </html>
