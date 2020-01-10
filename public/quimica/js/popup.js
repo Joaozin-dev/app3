@@ -50,6 +50,6 @@ function PopupCode(){
       popup: 'animated fadeOutDown faster'
     }
   }).then(function(){
-    
+    localStorage.setItem('session','ok');
   });
 }

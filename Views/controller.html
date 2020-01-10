@@ -7,17 +7,16 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/quimica/css/animate.css" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
     />
-    <title>Controller</title>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.js"></script>
     <script src="https://cdn.imac-group.cf/js/jquery-3.4.1.min.js"></script>
@@ -34,15 +33,10 @@
     <script type="text/javascript" src="quimica/controller/index.js"></script>
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">XGames</a>
+        <a href="#" class="brand-logo">AirGames</a>
         <a href="#" data-target="slide-out" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
         >
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li>
-        </ul>
       </div>
     </nav>
     <ul id="slide-out" class="sidenav">
@@ -53,10 +47,15 @@
         </div>
       </li>
       <li>
-        <a class="waves-effect" href="#!"><i class="material-icons">history</i>Meus Historicos</a>
+        <a class="waves-effect" href="#!"
+          ><i class="material-icons">history</i>Meus Historicos</a
+        >
       </li>
       <li>
-        <a class="waves-effect" href="#!"><i class="material-icons">credit_card</i>Meu Cash: <b><%= cash%></b></a>
+        <a class="waves-effect" href="#!"
+          ><i class="material-icons">credit_card</i>Meu Cash:
+          <b><%= cash%></b></a
+        >
       </li>
     </ul>
     <div class="container"></div>
@@ -65,12 +64,23 @@
         var elems = document.querySelectorAll(".sidenav");
         var instances = M.Sidenav.init(elems);
       });
-      $(document).ready(function(){
-        axios.get('/game/list')
-          .then(function(result){
+      $(document).ready(function() {
+        if(localStorage.getItem('session') === null){
+           $(".sidenav").html($(".sidenav").html()+`
+            <li>
+              <a class="waves-effect connect" href="#!"
+                ><i class="material-icons">devices</i>Conectar-se na tela</a
+              >
+            </li>
+          `);
+        })
+        $(".connect").click(function() {
+          PopupCode();
+        });
+        axios.get("/game/list").then(function(result) {
           const { data } = result;
-          data.forEach(function(item){
-            $('.container').append(`
+          data.forEach(function(item) {
+            $(".container").append(`
               <div class="row">
                   <div class="col s12 m7">
                     <div class="card hoverable medium">
@@ -91,7 +101,7 @@
                     </div>
                   </div>
                 </div>
-            `)
+            `);
           });
         });
       });
