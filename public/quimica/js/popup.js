@@ -49,7 +49,9 @@ function PopupCode(){
     hideClass: {
       popup: 'animated fadeOutDown faster'
     }
-  }).then(function(){
-    localStorage.setItem('session','ok');
+  }).then(function(result){
+    if(result.value){
+      localStorage.setItem('session','ok');
+    }
   });
 }

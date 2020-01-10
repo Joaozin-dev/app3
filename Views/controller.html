@@ -26,20 +26,20 @@
       type="image/x-icon"
     />
   </head>
-  <body>
+  <body class="grey lighten-2">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="quimica/js/sweetjs.js"></script>
     <script type="text/javascript" src="quimica/js/popup.js"></script>
     <script type="text/javascript" src="quimica/controller/index.js"></script>
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper grey darken-2">
         <a href="#" class="brand-logo">AirGames</a>
         <a href="#" data-target="slide-out" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
         >
       </div>
     </nav>
-    <ul id="slide-out" class="sidenav">
+    <ul id="slide-out" class="sidenav grey darken-2">
       <li>
         <div class="user-view">
           <a href=""><img class="circle" src="<%=photo%>"/></a>
@@ -73,7 +73,7 @@
               >
             </li>
           `);
-        })
+        }
         $(".connect").click(function() {
           PopupCode();
         });
