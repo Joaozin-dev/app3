@@ -15,7 +15,7 @@ routes.get("/privacidade",(req,res)=>{
   res.send("TUDO SEU, MEU")
 })
 
-routes.get("/game/info/:id",GameController.show);
+routes.get("/game/info/:id",UserNotSession,GameController.show);
 
 routes.get("/mobile",UserNotSession, (req, res) => {
   res.render("controller.html", {
