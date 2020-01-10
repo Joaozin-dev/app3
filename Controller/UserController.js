@@ -58,7 +58,7 @@ module.exports = {
             req.session.email = users[i].user_email;
             req.session.picture = users[i].user_picture;
             req.session.name = users[i].user_name;
-            req.cash = users[i].user_cash;
+            req.session.cash = users[i].user_cash;
             response = {
               user: {
                 name: users[i].user_nome,

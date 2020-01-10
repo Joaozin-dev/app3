@@ -18,12 +18,11 @@ routes.get("/privacidade",(req,res)=>{
 routes.get("/game/info/:id",UserNotSession,GameController.show);
 
 routes.get("/mobile",UserNotSession, (req, res) => {
-  const cash = req.cash;
   res.render("controller.html", {
     fb: req.session.fb,
     name: req.session.email,
     photo: req.session.picture,
-    cash
+    cash: req.session.cash
   });
 });
 
