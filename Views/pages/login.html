@@ -1,9 +1,12 @@
 <html>
   <head>
     <title>Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" type="text/css" href="quimica/css/animate.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="quimica/css/animate.css" />
   </head>
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -55,18 +58,24 @@
         function statusChangeCallback(response) {
           if (response.status === "connected") {
             axios
-                .get("/user/find/"+response.authResponse.userID, response)
-                .then(res => {
-                  if(res.data.code === 2){
-                    fetchUserProfile();
-                  } else if(res.data.user !== undefined || !res.data.user){
-                    // window.location = '/mobile';
-                    PopupUserWithImage('Continuar','Percebemos que voce ja tem uma conta com esse <b>Facebook</b>.<br/>Voce deseja continuar como: <b>' + res.data.user.name + '</b>',res.data.user.picture)
-                  }
-                })
-                .catch(err => {
-                  alert(err);
-                });
+              .get("/user/find/" + response.authResponse.userID, response)
+              .then(res => {
+                if (res.data.code === 2) {
+                  fetchUserProfile();
+                } else if (res.data.user !== undefined || !res.data.user) {
+                  // window.location = '/mobile';
+                  PopupUserWithImage(
+                    "Continuar",
+                    "Percebemos que voce ja tem uma conta com esse <b>Facebook</b>.<br/>Voce deseja continuar como: <b>" +
+                      res.data.user.name +
+                      "</b>",
+                    res.data.user.picture
+                  );
+                }
+              })
+              .catch(err => {
+                alert(err);
+              });
           } else {
             // Logging the user to Facebook by a Dialog Window
             facebookLoginByDialog();
@@ -80,8 +89,8 @@
               axios
                 .post("/user/creator", response)
                 .then(res => {
-                  if(res.data.code === 4){
-                    window.location = '/mobile';
+                  if (res.data.code === 4) {
+                    window.location = "/mobile";
                   }
                 })
                 .catch(err => {
