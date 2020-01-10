@@ -15,6 +15,10 @@ routes.get("/privacidade",(req,res)=>{
   res.send("TUDO SEU, MEU")
 })
 
+routes.get("/game/info",(req,res)=>{
+  res.render("pages/info.html")
+})
+
 routes.get("/mobile",UserNotSession, (req, res) => {
   res.render("controller.html", {
     fb: req.session.fb,
