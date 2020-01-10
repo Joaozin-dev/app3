@@ -57,11 +57,6 @@
           <b><%= cash%></b></a
         >
       </li>
-      <li>
-        <a class="waves-effect exit-account" href="#!"
-          ><i class="material-icons">exit_to_app</i>Sair da Conta</a
-        >
-      </li>
     </ul>
     <div class="container"></div>
     <script>
@@ -74,6 +69,7 @@
           $(".sidenav").html(
             $(".sidenav").html() +
               `
+            <li><div class="divider"></div></li>
             <li>
               <a class="waves-effect connect" href="#!"
                 ><i class="material-icons">devices</i>Conectar-se na tela</a
@@ -82,6 +78,17 @@
           `
           );
         }
+        $(".sidenav").html(
+            $(".sidenav").html() +
+              `
+            <li><div class="divider"></div></li>
+            <li>
+              <a class="waves-effect exit-account" href="#!"
+                ><i class="material-icons">exit_to_app</i>Sair da Conta</a
+              >
+            </li>
+          `
+          );
         $(".connect").click(function() {
           PopupCode();
         });
