@@ -20,15 +20,15 @@ module.exports = {
       .then(() => {
         console.log("Individuo adicionado com sucesso.");
         res.json({
-          msg: 'user success add',
+          msg: "user success add",
           code: 4
         });
         req.session.fb = query.id;
         req.session.email = query.email;
         req.session.picture = query.picture.data.url;
-        req.session.save((err)=>{
-          if(err) console.log(err);
-        })
+        req.session.save(err => {
+          if (err) console.log(err);
+        });
       })
       .catch(err => {
         console.log("Nao foi possivel inserir esse malandro.");
@@ -38,43 +38,50 @@ module.exports = {
         });
       });
   },
-  async show(req,res){
+  async show(req, res) {
     var response = null;
     UserModel.findAll({
-      attributes: ['facebook_id','user_nome','user_email','user_picture','user_cash']
-    }).then((query)=>{
+      attributes: [
+        "facebook_id",
+        "user_nome",
+        "user_email",
+        "user_picture",
+        "user_cash"
+      ]
+    }).then(query => {
       const users = JSON.parse(JSON.stringify(query));
-      if(users.length > 0){
-        for(var i = 0; i < users.length; i++){
-          console.log(users[i].facebook_id)
-          if(users[i].facebook_id === req.params.id){
+      if (users.length > 0) {
+        for (var i = 0; i < users.length; i++) {
+          console.log(users[i].facebook_id);
+          if (users[i].facebook_id === req.params.id) {
             req.session.fb = users[i].facebook_id;
             req.session.email = users[i].user_email;
             req.session.picture = users[i].user_picture;
             req.session.name = users[i].user_name;
-            req.session.cash = users[i].user_cash;
-            response = {user: {
+            req.cash = users[i].user_cash;
+            response = {
+              user: {
                 name: users[i].user_nome,
-                picture:users[i].user_picture,
-                email:users[i].user_email,
+                picture: users[i].user_picture,
+                email: users[i].user_email,
                 cash: users[i].user_cash
               },
               code: 3
-            }
+            };
           } else {
             response = {
-              msg: 'user not found',
+              msg: "user not found",
               code: 2
-            }
+            };
           }
         }
       } else {
         response = {
-          msg: 'user not found',
+          msg: "user not found",
           code: 2
-        }
+        };
       }
       res.json(response);
-    })
+    });
   }
 };
