@@ -1,6 +1,6 @@
 const { sql, Sequelize } = require("../connec-sql.js");
 
-const User = sql.define("games", {
+const User = sql.define("historic", {
   historic_id: {
     primaryKey: true,
     type: Sequelize.INTEGER,

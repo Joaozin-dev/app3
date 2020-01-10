@@ -2,6 +2,7 @@ const routes = require("express").Router();
 const sql = require("./connec-sql.js");
 
 const UserController = require("./Controller/UserController");
+const HistoricController = require("./Controller/HistoricController");
 const GameController = require("./Controller/GameController");
 
 const { UserInSession , UserNotSession } = require("./Middleware/UserMiddle");
@@ -33,7 +34,7 @@ routes.post("/user/creator", UserController.store);
 
 routes.get("/user/find/:id",UserController.show);
 
-routes.get("/user/historic/:id",);
+routes.get("/user/historic/:id",HistoricController.show);
 
 routes.get("/user/cancel",(req,res)=>{
   req.session.destroy(function(err) {
