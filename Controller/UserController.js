@@ -41,7 +41,7 @@ module.exports = {
   async show(req,res){
     var response = null;
     UserModel.findAll({
-      attributes: ['facebook_id','user_nome','user_email','user_picture']
+      attributes: ['facebook_id','user_nome','user_email','user_picture','user_cash']
     }).then((query)=>{
       const users = JSON.parse(JSON.stringify(query));
       if(users.length > 0){
@@ -52,10 +52,12 @@ module.exports = {
             req.session.email = users[i].user_email;
             req.session.picture = users[i].user_picture;
             req.session.name = users[i].user_name;
+            req.session.cash = users[i].user_cash;
             response = {user: {
                 name: users[i].user_nome,
                 picture:users[i].user_picture,
                 email:users[i].user_email,
+                cash: users[i].user_cash
               },
               code: 3
             }

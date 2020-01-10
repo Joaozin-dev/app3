@@ -19,7 +19,8 @@ routes.get("/mobile",UserNotSession, (req, res) => {
   res.render("controller.html", {
     fb: req.session.fb,
     name: req.session.email,
-    photo: req.session.picture
+    photo: req.session.picture,
+    cash: req.session.cash
   });
 });
 
