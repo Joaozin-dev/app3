@@ -55,7 +55,8 @@ module.exports = {
                 gamess.push(game);
               }
             });
-            res.json({...response,game:gamess});
+            console.log(gamess[1]);
+            res.json({...response,gamess});
           });
         } else {
         }
