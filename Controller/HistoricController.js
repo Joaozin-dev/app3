@@ -32,7 +32,7 @@ module.exports = {
         for (var g = 0; g < data.length; g++) {
           for(var i =0; i < historic.length; i++){
             if (historic[i].games_game_id === data[g].game_id) {
-              games.push(}data[g]);
+              games.push(data[g]);
             }
           }
         }
