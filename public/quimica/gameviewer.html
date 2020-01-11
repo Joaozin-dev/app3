@@ -8,9 +8,9 @@
 </head>
 <body>
     <script src ="/quimica/apis/phaser.min.js"></script>
-    <!-- <script type="module" src = "/quimica/screen/game.js"></script> -->
+    <script type="module" src = "/quimica/screen/game.js"></script>
     <script type="module">
-    	import { ScreenAPI } from 'http://localhost:3000/quimica/apis/gameapi.js';
+    	import { ScreenAPI } from 'https://airgames.tk/quimica/apis/gameapi.js';
         const controle = new ScreenAPI();
         controle.onReady((device_id)=>{
           controle.onPlayerDisconnected((player_id)=>{

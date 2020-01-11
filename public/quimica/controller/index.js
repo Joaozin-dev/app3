@@ -1,12 +1,12 @@
 const socket = io("https://airgames.tk");
 
 function connect(code){
+  const users = JSON.parse(localStorage.getItem('user_info'));
   socket.emit("new-controller", {
     code,
     player: {
-      user: "<%= fb%>",
-      photo: "<%= photo%>",
-      name: "<%= name%>"
+      photo: users.user.user_picture,
+      name: users.user.user_nome
     }
   });
 }

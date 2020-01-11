@@ -3,7 +3,7 @@ import Lobby from '/quimica/screen/Scenes/lobby.js';
 import Fase1 from '/quimica/screen/Scenes/fase1.js';
 import Fase2 from '/quimica/screen/Scenes/fase2.js';
 // IMPORTAR API DO "HEHE BOY PROJECT"
-import { ScreenAPI } from 'http://localhost:3000/quimica/apis/gameapi.js';
+import { ScreenAPI } from '/quimica/apis/gameapi.js';
 // INSTANCIAR A SCREEN
 var screen = new ScreenAPI();
 
