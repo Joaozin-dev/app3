@@ -9,10 +9,12 @@ module.exports = {
       attributes: ["usuarios_user_id", "games_game_id"]
     }).then(query => {
       const historics = JSON.parse(JSON.stringify(query));
+      var response = {};
       for (var i = 0; i < historics.length; i++) {
         if (historics[i].usuarios_user_id === userID) {
           historic.push(historics[i]);
         }
+        var games = [];
         GameModel.findAll({
           attributes: [
             "game_id",
@@ -25,16 +27,17 @@ module.exports = {
           ]
         }).then(query => {
           const data = JSON.parse(JSON.stringify(query));
-          for(var g = 0; g < data.length; g++){
-            for(var j = 0; j < historic.length; j++){
-              if(historic[j].games_game_id === data[g].game_id){
-                console.log(data[g]);
+          for (var g = 0; g < data.length; g++) {
+            for (var j = 0; j < historic.length; j++) {
+              if (historic[j].games_game_id === data[g].game_id) {
+                games.push(data[g]);
               }
+              response = {...response,games}
             }
           }
         });
       }
-      res.json({ historic });
+      res.json(response);
     });
   }
 };
