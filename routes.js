@@ -49,4 +49,8 @@ routes.get("/user/cancel",(req,res)=>{
 
 routes.get("/game/list",GameController.index);
 
+routes.get("/game",(req,res)=>{
+  
+});
+
 module.exports = routes;
