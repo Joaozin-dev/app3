@@ -3,7 +3,7 @@ const UserModel = require("../Model/UserModel");
 const GameModel = require("../Model/GameModel");
 module.exports = {
   async show(req, res) {
-    const userID = parseInt(req.session.id);
+    const userID = parseInt(req.params.id);
     var historic = [];
     var response = {};
     HistoricModel.findAll({
@@ -52,7 +52,7 @@ module.exports = {
             response = { ...response, user };
           }
         });
-        res.render("pages/historic.html",{response});
+        res.json(response);
       });
     });
   }

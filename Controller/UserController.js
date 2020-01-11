@@ -65,7 +65,8 @@ module.exports = {
                 name: users[i].user_nome,
                 picture: users[i].user_picture,
                 email: users[i].user_email,
-                cash: users[i].user_cash
+                cash: users[i].user_cash,
+                id:users[i].user_id
               },
               code: 3
             };

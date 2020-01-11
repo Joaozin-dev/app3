@@ -30,11 +30,15 @@ routes.get("/login", UserInSession, (req, res) => {
   res.render("pages/login.html");
 });
 
-routes.get("/historic", UserNotSession,HistoricController.show)
+routes.get("/historic", UserNotSession, (req, res) => {
+  res.render("pages/historic.html");
+});
 
 routes.post("/user/creator", UserController.store);
 
 routes.get("/user/find/:id",UserController.show);
+
+routes.get("/user/historic/:id",HistoricController.show);
 
 routes.get("/user/cancel",(req,res)=>{
   req.session.destroy(function(err) {

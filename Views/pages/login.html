@@ -54,7 +54,7 @@
                 if (res.data.code === 2) {
                   fetchUserProfile();
                 } else if (res.data.user !== undefined || !res.data.user) {
-                  // window.location = '/mobile';
+                  localStorage.setItem('user_id',res.data.user.id);
                   PopupUserWithImage(
                     facebookLogout,
                     "Continuar",
@@ -80,7 +80,7 @@
               .post("/user/creator", response)
               .then(res => {
                 if (res.data.code === 4) {
-                  window.location = "/mobile";
+                  // window.location = "/mobile";
                 }
               })
               .catch(err => {
