@@ -5,11 +5,11 @@ module.exports = {
   async show(req, res) {
     const userID = parseInt(req.params.id);
     var historic = [];
+    var response = {};
     HistoricModel.findAll({
       attributes: ["usuarios_user_id", "games_game_id"]
     }).then(query => {
       const historics = JSON.parse(JSON.stringify(query));
-      var response = {};
       for (var i = 0; i < historics.length; i++) {
         if (historics[i].usuarios_user_id === userID) {
           historic.push(historics[i]);
@@ -28,30 +28,26 @@ module.exports = {
         }).then(query => {
           const data = JSON.parse(JSON.stringify(query));
           for (var g = 0; g < data.length; g++) {
-            for (var j = 0; j < historic.length; j++) {
-              if (historic[j].games_game_id === data[g].game_id) {
-                games.push(data[g]);
-              }
-              response = { ...response, games };
+            console.log(historics[i]);
+            if (historics[i].games_game_id === data[g].game_id) {
+              games.push(data[g]);
             }
+            response = { ...response, games };
           }
-          UserModel.findAll({
-            attributes: [
-              "user_id",
-              "facebook_id",
-              "user_nome",
-              "user_email",
-              "user_picture",
-              "user_cash"
-            ]
-          }).then(query => {
-            const users = JSON.parse(JSON.stringify(query));
-            var user = null;
-            for(var u = 0; u < users.length; u++){
-              if(users[u].user_id === userID){
-                user = users[u];
-              }
-              response = {...response,user};
+        });
+        UserModel.findAll({
+          attributes: [
+            "user_id",
+            "user_nome",
+            "user_email",
+            "user_picture",
+            "user_cash"
+          ]
+        }).then(query => {
+          const users = JSON.parse(JSON.stringify(query));
+          users.forEach(user => {
+            if (user.user_id === userID) {
+              response = { ...response, user };
             }
           });
           res.json(response);
