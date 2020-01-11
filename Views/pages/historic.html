@@ -94,6 +94,7 @@
         });
         $(".exit-account").click(function() {
           axios.get("/user/cancel").then(function(result) {
+            localStorage.clear();
             window.location = "/login";
           });
         });
@@ -103,15 +104,13 @@
             const { data } = result;
             const { games, historic,user } = data;
             var date = {};
-            if (!data) {
-              data = JSON.parse(localStorage.getItem("user_info"));
-            }
             var game_content = {};
-            if (games) {
-              games.forEach(function(item) {
-                
-              });
-            }
+            $("img.circle").attr("src", user.user_picture);
+            $("span.name").html(user.user_nome);
+            $(".cash").html(`Seu Cash: <b>${user.user_cash}</b>`);
+            games.forEach(function(item) {
+              game_content[item.game_id] = item;
+            });
             if (historic) {
               historic.forEach(function(historics) {
                 const datett = "" + historics.historic_date;
@@ -152,10 +151,10 @@
                   </div>
               `);
               });
-            } else {
-              $(".container").append(`
-                <h1>Sem jogo</h1>
-              `);
+            }else {
+              $('.content').append(`
+                <h1>SEM JOGO</h1>
+              `)
             }
           });
       });

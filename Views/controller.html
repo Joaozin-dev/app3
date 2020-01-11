@@ -96,6 +96,7 @@
         });
         $('.exit-account').click(function(){
           axios.get("/user/cancel").then(function(result) {
+            localStorage.clear();
             window.location = '/login';
           });
         })

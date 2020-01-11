@@ -5,6 +5,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="quimica/css/animate.css" />
   </head>
@@ -95,7 +99,7 @@
               statusChangeCallback(response);
             },
             {
-              scope: "public_profile,id,name,email,picture"
+              scope: "public_profile,ema"
             }
           );
         }
@@ -112,29 +116,15 @@
     <nav>
       <div class="nav-wrapper grey darken-2">
         <a href="#" class="brand-logo">AirGames</a>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
-        >
       </div>
     </nav>
-    <ul id="slide-out" class="sidenav grey lighten-4">
-      <li>
-        <div class="user-view">
-          <a href=""><img class="circle" src="<%=photo%>"/></a>
-          <a href=""><span class="black-text name"><%=name%></span></a>
-        </div>
-      </li>
-      <li>
-        <a class="waves-effect" href="/historic"
-          ><i class="material-icons">history</i>Meus Historicos</a
-        >
-      </li>
-      <li>
-        <a class="waves-effect" href="#!"
-          ><i class="material-icons">credit_card</i>Meu Cash:
-          <b><%= cash%></b></a
-        >
-      </li>
-    </ul>
+    <div class="container center-align">
+      <div>
+        Para se conectar clique neste butao abaixo
+      </div>
+      <button class="btn center-align" id="login">
+        Conectar-se agora
+      </button>
+    </div>
   </body>
 </html>
