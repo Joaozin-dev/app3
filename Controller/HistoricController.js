@@ -7,13 +7,14 @@ module.exports = {
     var historic = [];
     var response = {};
     HistoricModel.findAll({
-      attributes: ["usuarios_user_id", "games_game_id"]
+      attributes: ["usuarios_user_id", "games_game_id","historic_date"]
     }).then(query => {
       const historics = JSON.parse(JSON.stringify(query));
       for (var i = 0; i < historics.length; i++) {
         if (historics[i].usuarios_user_id === userID) {
           historic.push(historics[i]);
         }
+        response = {...response,historic};
       }
       var games = [];
       GameModel.findAll({
@@ -31,11 +32,11 @@ module.exports = {
         for (var g = 0; g < data.length; g++) {
           for(var i =0; i < historic.length; i++){
             if (historic[i].games_game_id === data[g].game_id) {
-              games.push(data[g]);
+              games.push(}data[g]);
             }
           }
-          response = { ...response, games };
         }
+        response = { ...response, games };
       });
       UserModel.findAll({
         attributes: [

@@ -20,7 +20,7 @@ routes.get("/game/info/:id",UserNotSession,GameController.show);
 routes.get("/mobile",UserNotSession, (req, res) => {
   res.render("controller.html", {
     fb: req.session.fb,
-    name: req.session.email,
+    name: req.session.name,
     photo: req.session.picture,
     cash: req.session.cash
   });

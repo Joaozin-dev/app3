@@ -96,10 +96,12 @@
             window.location = '/login';
           });
         })
-        axios.get("/user/historic"+localStorage.getItem("user_id")).then(function(result) {
+        axios.get("/user/historic/"+localStorage.getItem("user_id")).then(function(result) {
           const { data } = result;
-          data.forEach(function(item) {
-            $('img.circle').attr('src',item.user.user_picture)
+          const { games } = data;
+          games.forEach(function(item) {
+            $('img.circle').attr('src',data.user.user_picture)
+            $('span.name').html(data.user.user_nome)
             $(".container").append(`
               <div class="row">
                   <div class="col s12 m7">
@@ -116,7 +118,8 @@
                         </p>
                       </div>
                       <div class="card-action">
-                        <a class="blue-text text-darken-2" href="/game/info/${item.game_id}">Jogue agora por apenas R$${item.game_price},00</a>
+                        <a class="blue-text text-darken-2" href="/game/info/${item.game_id}">${}</a>
+                        <a class="blue-text text-darken-2" href="/game/info/${item.game_id}"></a>
                       </div>
                     </div>
                   </div>

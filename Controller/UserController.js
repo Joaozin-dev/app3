@@ -58,7 +58,7 @@ module.exports = {
             req.session.fb = users[i].facebook_id;
             req.session.email = users[i].user_email;
             req.session.picture = users[i].user_picture;
-            req.session.name = users[i].user_name;
+            req.session.name = users[i].user_nome;
             req.session.cash = users[i].user_cash;
             response = {
               user: {
