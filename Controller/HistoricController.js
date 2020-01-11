@@ -32,12 +32,31 @@ module.exports = {
               if (historic[j].games_game_id === data[g].game_id) {
                 games.push(data[g]);
               }
-              response = {...response,games}
+              response = { ...response, games };
             }
           }
+          UserModel.findAll({
+            attributes: [
+              "user_id",
+              "facebook_id",
+              "user_nome",
+              "user_email",
+              "user_picture",
+              "user_cash"
+            ]
+          }).then(query => {
+            const users = JSON.parse(JSON.stringify(query));
+            var user = null;
+            for(var u = 0; u < users.length; u++){
+              if(users[u].user_id === userID){
+                user = users[u];
+              }
+              response = {...response,user};
+            }
+          });
+          res.json(response);
         });
       }
-      res.json(response);
     });
   }
 };
