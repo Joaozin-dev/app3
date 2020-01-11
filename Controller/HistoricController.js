@@ -9,10 +9,10 @@ module.exports = {
     HistoricModel.findAll({
       attributes: ["usuarios_user_id", "games_game_id"]
     }).then(query => {
-      const users = JSON.parse(JSON.stringify(query));
-      users.forEach(item => {
-        console.log(item);
-        if (item.usuarios_user_id === userID) {
+      const historics = JSON.parse(JSON.stringify(query));
+      historics.forEach(historic => {
+        console.log(historic);
+        if (historic.usuarios_user_id === userID) {
           UserModel.findAll({
             attributes: [
               "user_id",
@@ -26,7 +26,15 @@ module.exports = {
             const users = JSON.parse(JSON.stringify(query));
             users.forEach(user => {
               if (user.user_id === userID) {
-                response = { ...response, user };
+                response = {
+                  ...response,
+                  user:{
+                    id: user.user_id,
+                    name: user.user_nome,
+                    email: user.user_email,
+                    picture: user.user_picture
+                  }
+                }
               }
             });
           });
@@ -40,17 +48,20 @@ module.exports = {
               "game_price"
             ]
           }).then(query => {
-            const users = JSON.parse(JSON.stringify(query));
-            users.forEach(user => {
-              if (user.user_id === userID) {
-                response = { ...response, user };
+            const games = JSON.parse(JSON.stringify(query));
+            games.forEach(game =>{
+              if(game.game_id === historic.games_game_id){
+                response = {
+                  ...response,
+                  game
+                }
               }
-            });
+            })
+            res.json(response);
           });
         } else {
         }
       });
     });
-    res.json(response);
   }
 };
