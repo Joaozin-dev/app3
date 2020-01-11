@@ -1,7 +1,6 @@
 const HistoricModel = require("../Model/HistoricModel");
 const UserModel = require("../Model/UserModel");
 const GameModel = require("../Model/GameModel");
-const axios = require("axios");
 module.exports = {
   async show(req, res) {
     const userID = parseInt(req.params.id);
@@ -49,15 +48,14 @@ module.exports = {
             ]
           }).then(query => {
             const games = JSON.parse(JSON.stringify(query));
+            var i = 0;
+            var gamess = [];
             games.forEach(game =>{
               if(game.game_id === historic.games_game_id){
-                response = {
-                  ...response,
-                  game
-                }
+                gamess.push(game);
               }
-            })
-            res.json(response);
+            });
+            res.json({...response,game:gamess});
           });
         } else {
         }
