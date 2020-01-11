@@ -60,6 +60,8 @@
     </ul>
     <div class="container"></div>
     <script>
+      const json = {user: {user_picture: '<%= photo%>',user_nome: '<%= name%>',user_cash: '<%= cash%>'}}
+      localStorage.setItem('user_info',JSON.stringify(json));
       document.addEventListener("DOMContentLoaded", function() {
         var elems = document.querySelectorAll(".sidenav");
         var instances = M.Sidenav.init(elems);
