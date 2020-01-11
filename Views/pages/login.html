@@ -54,7 +54,7 @@
                 if (res.data.code === 2) {
                   fetchUserProfile();
                 } else if (res.data.user !== undefined || !res.data.user) {
-                  localStorage.setItem('user_id',res.data.user.id);
+                  localStorage.setItem("user_id", res.data.user.id);
                   PopupUserWithImage(
                     facebookLogout,
                     "Continuar",
@@ -95,8 +95,7 @@
               statusChangeCallback(response);
             },
             {
-              scope:
-                "public_profile,id,name,email,picture"
+              scope: "public_profile,id,name,email,picture"
             }
           );
         }
@@ -110,7 +109,32 @@
         }
       });
     </script>
-    <button id="login">Login</button>
-    <div id="status"></div>
+    <nav>
+      <div class="nav-wrapper grey darken-2">
+        <a href="#" class="brand-logo">AirGames</a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"
+          ><i class="material-icons">menu</i></a
+        >
+      </div>
+    </nav>
+    <ul id="slide-out" class="sidenav grey lighten-4">
+      <li>
+        <div class="user-view">
+          <a href=""><img class="circle" src="<%=photo%>"/></a>
+          <a href=""><span class="black-text name"><%=name%></span></a>
+        </div>
+      </li>
+      <li>
+        <a class="waves-effect" href="/historic"
+          ><i class="material-icons">history</i>Meus Historicos</a
+        >
+      </li>
+      <li>
+        <a class="waves-effect" href="#!"
+          ><i class="material-icons">credit_card</i>Meu Cash:
+          <b><%= cash%></b></a
+        >
+      </li>
+    </ul>
   </body>
 </html>

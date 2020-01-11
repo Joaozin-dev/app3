@@ -53,7 +53,10 @@
       </li>
       <li>
         <a class="waves-effect" href="#!"
-          ><i class="material-icons">credit_card</i>Meu Cash:</a
+          >
+          <i class="material-icons">credit_card</i>
+          <div class="cash"></div>
+        </a
         >
       </li>
     </ul>
@@ -106,6 +109,7 @@
             games.forEach(function(item) {
               $("img.circle").attr("src", data.user.user_picture);
               $("span.name").html(data.user.user_nome);
+              $(".cash").html(`Meu cash: <b>${data.user.user_cash}</b>`);
               game_content[item.game_id] = item;
             });
             historic.forEach(function(historics) {
