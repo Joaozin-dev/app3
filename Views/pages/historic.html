@@ -104,8 +104,10 @@
               const datett = ""+historics.historic_date;
               date[historics.games_game_id]= datett.split('-');
           });
-          console.log(date);
+          console.log(date[1]);
+          var i = 0;
           games.forEach(function(item) {
+            i++;
             $('img.circle').attr('src',data.user.user_picture)
             $('span.name').html(data.user.user_nome)
             $(".container").append(`
