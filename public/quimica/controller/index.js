@@ -10,10 +10,6 @@ function connect(code){
     }
   });
 }
-
-document.getElementById("con").addEventListener("click", function() {
-  socket.emit("getScreen", true);
-});
 socket.on("screen-id", function(data) {
   console.log(data);
 });
