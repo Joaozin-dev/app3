@@ -3,7 +3,7 @@ const UserModel = require("../Model/UserModel");
 const GameModel = require("../Model/GameModel");
 module.exports = {
   async show(req, res) {
-    const userID = parseInt(req.params.id);
+    const userID = parseInt(req.session.id);
     var historic = [];
     var response = {};
     HistoricModel.findAll({
@@ -14,45 +14,46 @@ module.exports = {
         if (historics[i].usuarios_user_id === userID) {
           historic.push(historics[i]);
         }
-        var games = [];
-        GameModel.findAll({
-          attributes: [
-            "game_id",
-            "game_name",
-            "game_picture",
-            "game_description",
-            "game_last_update",
-            "game_price",
-            "game_video"
-          ]
-        }).then(query => {
-          const data = JSON.parse(JSON.stringify(query));
-          for (var g = 0; g < data.length; g++) {
-            console.log(historics[i]);
-            if (historics[i].games_game_id === data[g].game_id) {
+      }
+      var games = [];
+      GameModel.findAll({
+        attributes: [
+          "game_id",
+          "game_name",
+          "game_picture",
+          "game_description",
+          "game_last_update",
+          "game_price",
+          "game_video"
+        ]
+      }).then(query => {
+        const data = JSON.parse(JSON.stringify(query));
+        for (var g = 0; g < data.length; g++) {
+          for(var i =0; i < historic.length; i++){
+            if (historic[i].games_game_id === data[g].game_id) {
               games.push(data[g]);
             }
-            response = { ...response, games };
+          }
+          response = { ...response, games };
+        }
+      });
+      UserModel.findAll({
+        attributes: [
+          "user_id",
+          "user_nome",
+          "user_email",
+          "user_picture",
+          "user_cash"
+        ]
+      }).then(query => {
+        const users = JSON.parse(JSON.stringify(query));
+        users.forEach(user => {
+          if (user.user_id === userID) {
+            response = { ...response, user };
           }
         });
-        UserModel.findAll({
-          attributes: [
-            "user_id",
-            "user_nome",
-            "user_email",
-            "user_picture",
-            "user_cash"
-          ]
-        }).then(query => {
-          const users = JSON.parse(JSON.stringify(query));
-          users.forEach(user => {
-            if (user.user_id === userID) {
-              response = { ...response, user };
-            }
-          });
-          res.json(response);
-        });
-      }
+        res.render("pages/historic.html",{response});
+      });
     });
   }
 };

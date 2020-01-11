@@ -42,6 +42,7 @@ module.exports = {
     var response = null;
     UserModel.findAll({
       attributes: [
+        "user_id",
         "facebook_id",
         "user_nome",
         "user_email",
@@ -53,6 +54,7 @@ module.exports = {
       if (users.length > 0) {
         for (var i = 0; i < users.length; i++) {
           if (users[i].facebook_id === req.params.id) {
+            req.session.id = users[i].user_id;
             req.session.fb = users[i].facebook_id;
             req.session.email = users[i].user_email;
             req.session.picture = users[i].user_picture;

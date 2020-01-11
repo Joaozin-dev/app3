@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Histico de Joao Pedro</title>
+    <title>Histico de <%= response.user.user_name%></title>
     <!--Import Google Icon Font-->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -35,16 +35,9 @@
     </div>
     <div class="container">
       <div class="video-container">
-        <iframe
-          width="853"
-          height="480"
-          src="<%= game_video%>"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
       </div>
       <div class="valign-wrapper">
-        <h5 class="center-align"><%= game_name%></h5>
+        <h5 class="center-align"><%= response%></h5>
       </div>
       <div class="valign-wrapper">
         <p><%= game_description%></p>
