@@ -153,7 +153,7 @@ module.exports = {
             code: 6
           });
         }
-      } else {
+      } else if ((usucode === dbcode) || (dbcode === null) ) {
         socket.emit("code-connect", {
           msg: "code not exist",
           code: 7
