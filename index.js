@@ -13,7 +13,7 @@ const bodyParser = require("body-parser");
 const routes = require("./routes");
 const session = require("express-session");
 
-app.use(helmet());
+// app.use(helmet());
 app.set("trust proxy", 1);
 app.use(
   session({
@@ -27,7 +27,7 @@ app.set("views", path.join(__dirname, "Views"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
-app.use(cors('https://airgames.tk'));
+// app.use(cors('https://airgames.tk'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
