@@ -1,6 +1,6 @@
-const socket = io("https://airgames.tk");
+const socket = io("https://airgames.tk/");
 
-function connect(code){
+function Connect(code){
   const users = JSON.parse(localStorage.getItem('user_info'));
   socket.emit("new-controller", {
     code,
@@ -17,9 +17,7 @@ socket.on("remove-connection", function() {
   Toast("Tela Desconectada","error");
 });
 socket.on("code-connect",function(data){
-  if(data.code === 6){
-    
-  }
+  console.log(data);
 });
 function hello() {
   return socket;

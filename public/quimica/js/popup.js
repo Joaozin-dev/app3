@@ -54,7 +54,7 @@ function PopupCode() {
   }).then(function(result) {
     if (result.value) {
       const code = $("#code").val();
-      connect(code);
+      Connect(code);
     } else {
       Swal.fire({
         title: "<strong>Conexao cancelada</strong>",
