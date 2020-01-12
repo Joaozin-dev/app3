@@ -81,12 +81,12 @@ function PopupCode() {
     }
   });
 }
-function Toast(title,icon) {
+function Toast(title,icon,timer) {
   const Toast = Swal.mixin({
     toast: true,
     position: "top",
     showConfirmButton: false,
-    timer: 3000,
+    timer,
     timerProgressBar: true,
     onOpen: toast => {
       toast.addEventListener("mouseenter", Swal.stopTimer);
