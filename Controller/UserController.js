@@ -40,6 +40,7 @@ module.exports = {
   },
   async show(req, res) {
     var response = null;
+    console.log(req.headers);
     UserModel.findAll({
       attributes: [
         "user_id",
@@ -83,6 +84,7 @@ module.exports = {
           code: 2
         };
       }
+      res.header('content-type','application/json');
       res.json(response);
     });
   }
