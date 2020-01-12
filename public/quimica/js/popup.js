@@ -39,7 +39,7 @@ function PopupCode() {
     position: "bottom",
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    html: `<input type="number" id="code" placeholder="Seu Codigo">`,
+    html: `<input type="number" id="code" maxlength = "6" placeholder="Seu Codigo">`,
     showCloseButton: true,
     showCancelButton: false,
     focusConfirm: true,

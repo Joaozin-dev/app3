@@ -153,11 +153,18 @@ module.exports = {
             code: 6
           });
         }
-      } else if ((usucode === dbcode) || (dbcode === null) ) {
-        socket.emit("code-connect", {
-          msg: "code not exist",
-          code: 7
-        });
+      } else {
+        if(dbcode === undefined){
+          socket.emit("code-connect", {
+            msg: "code not exist",
+            code: 7
+          });
+        } else {
+          socket.emit("code-connect", {
+            msg: "code not exist",
+            code: 7
+          });
+        }
       }
     });
   },
@@ -168,17 +175,19 @@ module.exports = {
     db.ref("conexao/").once("value", snapshot => {
       item = snapshot.val();
     });
-    if (item.length > 0 && item !== "undefinded") {
-      for (var i = 0; i < item.length; i++) {
-        db.ref(`conexao/${item[i].ID}/Jogadores`).once("value", players => {
-          players.forEach(playersitem => {
-            if (playersitem.val().socket === socket.id) {
-              db.ref(`conexao/${item[i].ID}`).once("value", screenId => {
-                socket.emit("screen-id", { screenId: screenId.val().Socket });
-              });
-            }
+    if (item) {
+      if (item.length > 0 && item !== "undefinded") {
+        for (var i = 0; i < item.length; i++) {
+          db.ref(`conexao/${item[i].ID}/Jogadores`).once("value", players => {
+            players.forEach(playersitem => {
+              if (playersitem.val().socket === socket.id) {
+                db.ref(`conexao/${item[i].ID}`).once("value", screenId => {
+                  socket.emit("screen-id", { screenId: screenId.val().Socket });
+                });
+              }
+            });
           });
-        });
+        }
       }
     }
   },

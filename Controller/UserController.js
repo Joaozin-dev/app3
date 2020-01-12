@@ -40,7 +40,6 @@ module.exports = {
   },
   async show(req, res) {
     var response = null;
-    console.log(req.headers);
     UserModel.findAll({
       attributes: [
         "user_id",
