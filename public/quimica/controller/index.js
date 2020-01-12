@@ -17,7 +17,9 @@ socket.on("remove-connection", function() {
   Toast("Tela Desconectada","error");
 });
 socket.on("code-connect",function(data){
-  console.log(data);
+  if(data.code === 6){
+    Toast('Conectado com successo',)
+  }
 });
 function hello() {
   return socket;
