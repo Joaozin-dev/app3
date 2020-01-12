@@ -74,8 +74,9 @@ io.on("connect", socket => {
       )}): ${JSON.stringify(data.msg)}`
     );
   });
+  // QUANDO O RETORNAR OS CONTROLES CONECTADOS
+  // PEGAR O ID DA TELA
   socket.on("getScreen", data => {
-    // PEGAR O ID DA TELA
     CM.getScreenId(socket, data);
   });
   socket.on("getController", data => {
