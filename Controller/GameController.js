@@ -6,7 +6,7 @@ module.exports = {
       attributes: ['game_id','game_name','game_picture','game_description','game_last_update','game_price']
     }).then((query)=>{
       const data = JSON.parse(JSON.stringify(query));
-      res.header('content-type','application/text');
+      res.header('content-type','application/json');
       res.json(data);
     });
   },
