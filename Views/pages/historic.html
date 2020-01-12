@@ -111,7 +111,7 @@
             games.forEach(function(item) {
               game_content[item.game_id] = item;
             });
-            if (historic) {
+            if (historic !== undefined) {
               historic.forEach(function(historics) {
                 const datett = "" + historics.historic_date;
                 const date = datett.split("-");

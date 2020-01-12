@@ -18,7 +18,9 @@ socket.on("remove-connection", function() {
 });
 socket.on("code-connect",function(data){
   if(data.code === 6){
-    Toast('Conectado com successo',)
+    Toast('Conectado com successo','success')
+  } else if(data.code === 7){
+    Toast('Codigo nao encontrado','error')
   }
 });
 function hello() {
