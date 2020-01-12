@@ -11,9 +11,9 @@
     <script type="module" src = "/quimica/screen/game.js"></script>
     <script type="module">
     	import { ScreenAPI } from 'https://airgames.tk/quimica/apis/gameapi.js';
-        const controle = new ScreenAPI();
-        controle.onReady((device_id)=>{
-          controle.onPlayerDisconnected((player_id)=>{
+        const screen = new ScreenAPI();
+        screen.onReady((device_id)=>{
+          screen.onPlayerConnect((player_id)=>{
             console.log(`PLAYER {${player_id}} DISCONECTADO`);
           });
         });
