@@ -32,10 +32,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 
-app.use("/quimica/:file", (req, res, next) => {
-  res.render("quimica/" + req.params.file);
-});
-
 const CM = require("./Model/ConnectionModel");
 
 io.on("connect", socket => {
