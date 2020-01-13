@@ -7,7 +7,7 @@ socket.on("screen-code", function(data) {
   ).innerHTML = `<b>YOU CODE: ${data.Code}</b>`;
 });
 socket.on("disconnect", function() {
-
+  window.location = "/";
 });
 socket.on("player-disconnected", function(data) {
   alert(`PLAYER ${data.socket} DESCONECTADO`);

@@ -5,11 +5,11 @@ class Fase1 extends Phaser.Scene{
         this.game = game;
     }
     preload(){
-        this.load.tilemapTiledJSON('mappy','quimica/assets/fase1.json');
-        this.load.image('Tileset.v2','quimica/assets/Tileset.v2.png');
-        this.load.image('background','quimica/assets/fundo.png');
+        this.load.tilemapTiledJSON('mappy','/quimica/assets/fase1.json');
+        this.load.image('Tileset.v2','/quimica/assets/Tileset.v2.png');
+        this.load.image('background','/quimica/assets/fundo.png');
         this.load.spritesheet('dude', 
-            'http://localhost:3000/quimica/assets/dude.png',
+            '/quimica/assets/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );
     }

@@ -79,6 +79,7 @@ module.exports = {
         });
         // REMOVE DE ACORDO COM SEU ID
         db.ref(`conexao/${array[i].ID}`).remove();
+        socket.emit("remove-connection",true)
       } else {
         //VARIAVEL DE APOIO
         var jogArray = [];
@@ -110,7 +111,7 @@ module.exports = {
     const db = fb.database();
     // BUSCA A REFERENCIA DO JSON NO FIREBASE
     var array = [{
-      Code: 0202320230224902349023940234,
+      Code: 202320230224902349023940234,
       Game: "Nenhum",
       ID:-1,
       Socket: "heneooi"

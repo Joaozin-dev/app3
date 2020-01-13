@@ -28,10 +28,10 @@
       const { userAgent } = navigator;
       if(!userAgent.includes('Android')){
         $("body").html('<object data="https://airgames.tk/screen">');
-        $("title").html("AirGames Mobile");
-      } else {
-        $("body").html('<object data="https://airgames.tk/mobile">');
         $("title").html("AirGames");
+      } else {
+        $("title").html("AirGames Mobile");
+        $("body").html('<object data="https://airgames.tk/mobile">');
       }
     </script>
   </body>
