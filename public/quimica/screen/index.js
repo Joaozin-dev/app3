@@ -10,8 +10,8 @@ socket.on("disconnect", function() {
   window.location = "/";
 });
 socket.on("player-disconnected", function(data) {
-  alert(`PLAYER ${data.socket} DESCONECTADO`);
-  document.querySelector(`#${data.socket}`).innerHTML = "";
+  console.log(data);
+  // Toast(`${data.player.name} se desconectou`,'error');
 });
 socket.on("new-player", function(data) {
   Toast(`${data.player.name} se conectou`,'success');
