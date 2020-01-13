@@ -14,6 +14,9 @@ class Fase1 extends Phaser.Scene{
         );
     }
     create(){
+        this.game.onPlayerDisconnected(function(player_id){
+          this.scene.start('Lobby');
+        });
 
         let backgroundImage = this.add.image(0, 0,'background').setOrigin(0, 0);
 

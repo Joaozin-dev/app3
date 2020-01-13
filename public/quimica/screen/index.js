@@ -11,7 +11,7 @@ socket.on("disconnect", function() {
 });
 socket.on("player-disconnected", function(data) {
   console.log(data);
-  // Toast(`${data.player.name} se desconectou`,'error');
+  Toast(`${data.player.name} se desconectou`,'error');
 });
 socket.on("new-player", function(data) {
   Toast(`${data.player.name} se conectou`,'success');
