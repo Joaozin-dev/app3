@@ -21,7 +21,7 @@ socket.on("code-connect",function(data){
   if(data.code === 6){
     Toast('Conectado com successo','success')
     localStorage.setItem('user_session',1);
-    $('.sidenav').html('');
+    $('.connect').html('');
   } else if(data.code === 7){
     Toast('Codigo nao encontrado','error')
   }
