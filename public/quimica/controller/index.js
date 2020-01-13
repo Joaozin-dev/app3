@@ -16,7 +16,7 @@ socket.on("screen-id", function(data) {
 socket.on("remove-connection", function() {
   localStorage.setItem('user_session',null);
   setTimeout(function(){
-    window.location = '/';
+    $('.connect').hide();
   },5900);
   Toast("Tela Desconectada","error");
 });

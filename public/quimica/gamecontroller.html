@@ -13,10 +13,10 @@
       <script type="module">
         import { ControllerAPI } from 'http://localhost:3000/quimica/apis/gameapi.js';
         const controle = new ControllerAPI();
-        controle.onReady((device_id)=>{
-          console.log(device_id);
-          controle.onPlayerDisconnected((player_id)=>{
-            console.log(`PLAYER {${player_id}} DISCONECTADO`);
+        controle.onReady(function(device_id){
+          const screenId = controle.getControllers().id(device_id);
+          $('button').click(function(){
+            controle.sendMessage(screenId,"Ola Mundo");
           })
         });
       </script>

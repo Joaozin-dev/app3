@@ -13,9 +13,7 @@
     	import { ScreenAPI } from 'https://airgames.tk/quimica/apis/gameapi.js';
         const screen = new ScreenAPI();
         screen.onReady((device_id)=>{
-          screen.onPlayerConnect((player_id)=>{
-            console.log(`PLAYER {${player_id}} DISCONECTADO`);
-          });
+          screen.onMessage(player_id,msg)
         });
     </script>
     <div class="container">
