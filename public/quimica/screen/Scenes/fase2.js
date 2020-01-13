@@ -5,11 +5,11 @@ class Fase2 extends Phaser.Scene{
         this.game = game;
     }
     preload(){
-        this.load.tilemapTiledJSON('mappy','http://localhost:3000/quimica/assets/fase2.json');
-        this.load.image('Tileset','http://localhost:3000/quimica/assets/Tileset.v2.png');
-        this.load.image('background','http://localhost:3000/quimica/assets/foto.jpg');
+        this.load.tilemapTiledJSON('mappy','https://airgames.tk/quimica/assets/fase1.json');
+        this.load.image('Tileset.v2','https://airgames.tk/quimica/assets/Tileset.v2.png');
+        this.load.image('background','https://airgames.tk/quimica/assets/fundo.png');
         this.load.spritesheet('dude', 
-            'http://localhost:3000/quimica/assets/dude.png',
+            'https://airgames.tk/quimica/assets/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );
     }

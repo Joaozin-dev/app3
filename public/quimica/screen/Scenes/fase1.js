@@ -1,21 +1,22 @@
+let connected = true;
 class Fase1 extends Phaser.Scene{
     constructor(game){
         super("Fase1");
         let player,msg,direction;
-        this.game = game;
+        this.gameapi = game;
     }
     preload(){
-        this.load.tilemapTiledJSON('mappy','/quimica/assets/fase1.json');
-        this.load.image('Tileset.v2','/quimica/assets/Tileset.v2.png');
-        this.load.image('background','/quimica/assets/fundo.png');
+        this.load.tilemapTiledJSON('mappy','https://airgames.tk/quimica/assets/fase1.json');
+        this.load.image('Tileset.v2','https://airgames.tk/quimica/assets/Tileset.v2.png');
+        this.load.image('background','https://airgames.tk/quimica/assets/fundo.png');
         this.load.spritesheet('dude', 
-            '/quimica/assets/dude.png',
+            'https://airgames.tk/quimica/assets/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );
     }
     create(){
-        this.game.onPlayerDisconnected(function(player_id){
-          this.scene.start('Lobby');
+        this.gameapi.onPlayerDisconnected(function(player_id){
+          connected = false;
         });
 
         let backgroundImage = this.add.image(0, 0,'background').setOrigin(0, 0);
@@ -83,6 +84,9 @@ class Fase1 extends Phaser.Scene{
         if (this.direction === 'jump' && this.player.body.blocked.down)
         {
             this.player.setVelocityY(-230);
+        }
+        if(this.connected){
+          console.log(this.connected);
         }
         this.fall(this.player,this.scene);
     }
