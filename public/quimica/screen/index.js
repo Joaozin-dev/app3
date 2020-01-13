@@ -1,4 +1,4 @@
-const socket = io('https://airgames.tk');
+const socket = io('https://airgames.herokuapp.com');
 const frame = document.getElementById("gameviewer");
 socket.emit("join", { type: "screen", connect: true });
 socket.on("screen-code", function(data) {

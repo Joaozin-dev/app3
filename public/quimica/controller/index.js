@@ -1,4 +1,4 @@
-const socket = io("https://airgames.tk/");
+const socket = io("https://airgames.herokuapp.com");
 
 function Connect(code){
   const users = JSON.parse(localStorage.getItem('user_info'));
