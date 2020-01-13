@@ -42,7 +42,7 @@
     <ul id="slide-out" class="sidenav grey lighten-4">
       <li>
         <div class="user-view">
-          <a href=""><img class="circle"/></a>
+          <a><img class="circle"/></a>
           <a href=""><span class="black-text name"></span></a>
         </div>
       </li>
@@ -106,6 +106,9 @@
             var date = {};
             var game_content = {};
             $("img.circle").attr("src", user.user_picture);
+            $(".circle").click(function(){
+              PopupWithImage("Foto de Perfil","<b>Nao foi possivel alterar a foto de perfil</b><br/>O AirGames ainda nao desponibilizou esse tipo de servico<br>para mais informacoes acesse<br><a href='https://portal.airgames.tk/blog/users'>https://portal.airgames.tk/blog/users</a>",user.user_picture)
+            })
             $("span.name").html(user.user_nome);
             $(".cash").html(`Meu Cash: <b>${user.user_cash}</b>`);
             games.forEach(function(item) {
