@@ -15,6 +15,10 @@ routes.get("/screen", (req, res) => {
   res.render("screen.html");
 });
 
+routes.get("/play/game", (req, res) => {
+  res.render("pages/play.html");
+});
+
 routes.get("/privacidade",(req,res)=>{
   res.send("TUDO SEU, MEU")
 })

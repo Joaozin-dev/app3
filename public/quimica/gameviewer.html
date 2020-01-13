@@ -13,7 +13,9 @@
     	import { ScreenAPI } from 'https://airgames.tk/quimica/apis/gameapi.js';
         const screen = new ScreenAPI();
         screen.onReady((device_id)=>{
-          screen.onMessage(player_id,msg)
+          screen.onMessage(function(player_id,msg){
+            console.log(player_id,msg);
+          })
         });
     </script>
     <div class="container">
