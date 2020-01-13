@@ -42,7 +42,7 @@
     <ul id="slide-out" class="sidenav grey lighten-4">
       <li>
         <div class="user-view">
-          <a href=""><img onClick="PopupUserWithImage('<%=photo%>','Foto de Perfil','<b>Nao</b> alterar a foto de perfil<br/>O AirGames ainda nao desponibilizou esse tipo de servico<br>para mais informacoes acesse<br><a href='https://portal.airgames.tk/blog/users'>https://portal.airgames.tk/blog/users</a>')" class="circle" src="<%=photo%>"/></a>
+          <a><img class="circle" src="<%=photo%>"/></a>
           <a href=""><span class="black-text name"><%=name%></span></a>
         </div>
       </li>
@@ -100,6 +100,9 @@
         $(".connect").click(function() {
           PopupCode();
         });
+        $(".circle").click(function(){
+          PopupWithImage("Foto de Perfil","<b>Nao foi possivel alterar a foto de perfil</b><br/>O AirGames ainda nao desponibilizou esse tipo de servico<br>para mais informacoes acesse<br><a href='https://portal.airgames.tk/blog/users'>https://portal.airgames.tk/blog/users</a>","<%=photo%>")
+        })
         $(".exit-account").click(function() {
           axios.get("/user/cancel").then(function(result) {
             localStorage.clear();

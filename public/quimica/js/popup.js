@@ -32,6 +32,25 @@ function PopupUserWithImage(facebookLogout,title, text, imageUrl) {
   });
 }
 
+function PopupWithImage(title, text, imageUrl) {
+  Swal.fire({
+    title,
+    html:
+      `<img src=${imageUrl} style="width:150px; height:150; border-radius:50%"><br/>` +
+      text,
+    position: "bottom",
+    showCancelButton: false,
+    confirmButtonColor: "#3085d6",
+    confirmButtonText: "Tudo bem",
+    showClass: {
+      popup: "animated fadeInUp faster"
+    },
+    hideClass: {
+      popup: "animated fadeOutDown faster"
+    }
+  })
+}
+
 function PopupCode() {
   Swal.fire({
     title: "<strong>Digite o codigo</strong>",
