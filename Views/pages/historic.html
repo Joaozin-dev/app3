@@ -107,7 +107,7 @@
             var game_content = {};
             $("img.circle").attr("src", user.user_picture);
             $("span.name").html(user.user_nome);
-            $(".cash").html(`Seu Cash: <b>${user.user_cash}</b>`);
+            $(".cash").html(`Meu Cash: <b>${user.user_cash}</b>`);
             games.forEach(function(item) {
               game_content[item.game_id] = item;
             });

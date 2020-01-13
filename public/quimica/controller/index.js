@@ -15,13 +15,14 @@ socket.on("screen-id", function(data) {
 });
 socket.on("remove-connection", function() {
   localStorage.setItem('user_session',null);
+  window.location = '/';
   Toast("Tela Desconectada","error");
 });
 socket.on("code-connect",function(data){
   if(data.code === 6){
     Toast('Conectado com successo','success')
     localStorage.setItem('user_session',1);
-    $('.connect').html('');
+    $('.connect').hide();
   } else if(data.code === 7){
     Toast('Codigo nao encontrado','error')
   }
