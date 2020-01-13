@@ -1,3 +1,4 @@
+let players = 0;
 class Lobby extends Phaser.Scene{
     constructor(game){
         super("Lobby");
@@ -9,11 +10,15 @@ class Lobby extends Phaser.Scene{
         this.gameapi.onReady((device_id)=>{
           this.gameapi.onPlayerConnect((player_id)=>{
             console.log(player_id,"LOBBY")
-            this.scene.start('Fase1');
+            players++;
           });
         });
     }
-    update(){}
+    update(){
+      if(players > 0){
+        this.scene.start('Fase1');
+      }
+    }
 }
 
 export default Lobby;

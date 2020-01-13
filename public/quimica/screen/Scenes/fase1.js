@@ -85,8 +85,8 @@ class Fase1 extends Phaser.Scene{
         {
             this.player.setVelocityY(-230);
         }
-        if(this.connected){
-          console.log(this.connected);
+        if(!connected){
+          this.scene.start('Lobby');
         }
         this.fall(this.player,this.scene);
     }
