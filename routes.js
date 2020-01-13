@@ -15,8 +15,14 @@ routes.get("/screen", (req, res) => {
   res.render("screen.html");
 });
 
-routes.get("/play/game", (req, res) => {
-  res.render("pages/play.html");
+routes.get("/play/game/:id", (req, res) => {
+  res.render("pages/play.html",{
+    game:req.params.id,
+    fb: req.session.fb,
+    name: req.session.name,
+    photo: req.session.picture,
+    cash: req.session.cash
+  });
 });
 
 routes.get("/privacidade",(req,res)=>{

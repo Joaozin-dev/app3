@@ -42,8 +42,8 @@
     <ul id="slide-out" class="sidenav grey lighten-4">
       <li>
         <div class="user-view">
-          <a><img class="circle"/></a>
-          <a href=""><span class="black-text name"></span></a>
+          <a><img class="circle" src="<%=photo%>"/></a>
+          <a href=""><span class="black-text name"><%=name%></span></a>
         </div>
       </li>
       <li>
@@ -52,13 +52,13 @@
         >
       </li>
       <li>
-        <a class="waves-effect" href="#!">
-          <i class="material-icons">credit_card</i>
-          <div class="cash"></div>
-        </a>
+        <a class="waves-effect" href="#!"
+          ><i class="material-icons">credit_card</i>Meu Cash:
+          <b><%= cash%></b></a
+        >
       </li>
     </ul>
-    <div class="content" width="10px;" height="10px;" style="padding: 0; margin: 0;"></div>
+    <object style="width: 100%; height:100%;" data="https://airgames.tk/quimica/<%= game%>">
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         var elems = document.querySelectorAll(".sidenav");
@@ -98,7 +98,6 @@
             window.location = "/login";
           });
         });
-        $(".content").html('<object data="https://airgames.tk/quimica/gamecontroller.html">');
       });
     </script>
   </body>
