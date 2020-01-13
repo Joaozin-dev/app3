@@ -124,46 +124,43 @@ module.exports = {
        * VERIFICA SE O CODIGO DIGITADO PELO O
        * USUARIO BATE COM ALGUM DO BANCO DE DADOS
        */
-      if (usucode === dbcode) {
-        var iduser = 0;
-        // FAZ REFERENCIA DO JSON NO FIREBASE
-        db.ref(`conexao/${item.ID}/Jogadores`).once("value", snapshot => {
-          // MAPEIA O RETORNO
-          snapshot.forEach(item => {
-            // ATRIBUI OS ITEM VINDO A UMA VARIAVEL
-            iduser++;
-            jogarray.push(item.val());
-          });
+      console.log(dbcode);
+      if (dbcode.length < 1 || !dbcode) {
+        console.log("OKOKOK");
+        socket.emit("code-connect", {
+          msg: "code not exist",
+          code: 7
         });
-        // VERIFICA SE O SOCKET ID ESTA NESSA VARIAVEL
-        var key = parseInt(iduser);
-
-        if (!SExist(jogarray, socket.id)) {
-          // SE NÃO ESTIVER ADICIONA ELA
-          jogarray.push({ ID: key, player: data.player, socket: socket.id });
-          // AI ENVIA PRO BANCO DE DADOS
-          db.ref(`conexao/${item.ID}`).update({ Jogadores: jogarray });
-          // ENVIA UM SOCKET SÓ PRA QUELE SOCKET COM O EVENTO NEW-PLAYER
-          socket
-            .to(item.Socket)
-            .emit("new-player", { socket: socket.id, player: data.player });
-
-          socket.emit("code-connect", {
-            msg: "code exist",
-            code: 6
-          });
-        }
       } else {
-        if(dbcode === undefined){
-          socket.emit("code-connect", {
-            msg: "code not exist",
-            code: 7
+        if (usucode === dbcode) {
+          var iduser = 0;
+          // FAZ REFERENCIA DO JSON NO FIREBASE
+          db.ref(`conexao/${item.ID}/Jogadores`).once("value", snapshot => {
+            // MAPEIA O RETORNO
+            snapshot.forEach(item => {
+              // ATRIBUI OS ITEM VINDO A UMA VARIAVEL
+              iduser++;
+              jogarray.push(item.val());
+            });
           });
-        } else {
-          socket.emit("code-connect", {
-            msg: "code not exist",
-            code: 7
-          });
+          // VERIFICA SE O SOCKET ID ESTA NESSA VARIAVEL
+          var key = parseInt(iduser);
+
+          if (!SExist(jogarray, socket.id)) {
+            // SE NÃO ESTIVER ADICIONA ELA
+            jogarray.push({ ID: key, player: data.player, socket: socket.id });
+            // AI ENVIA PRO BANCO DE DADOS
+            db.ref(`conexao/${item.ID}`).update({ Jogadores: jogarray });
+            // ENVIA UM SOCKET SÓ PRA QUELE SOCKET COM O EVENTO NEW-PLAYER
+            socket
+              .to(item.Socket)
+              .emit("new-player", { socket: socket.id, player: data.player });
+
+            socket.emit("code-connect", {
+              msg: "code exist",
+              code: 6
+            });
+          }
         }
       }
     });
