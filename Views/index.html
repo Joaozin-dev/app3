@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>AirGames</title>
+    <link
+      rel="shortcut icon"
+      href="https://cdn.imac-group.cf/images/imaf.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/quimica/css/animate.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.imac-group.cf/js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://airgames.tk/quimica/screen/index.js"></script>
+    <script src="quimica/js/sweetjs.js"></script>
+    <script type="text/javascript" src="/quimica/controller/index.js"></script>
+    <script type="text/javascript" src="quimica/js/popup.js"></script>
+    <div></div>
+    <script>
+      const { userAgent } = navigator;
+      if(!userAgent.includes('Android')){
+        $("div").load("https://airgames.tk/screen");
+      } else {
+        $("div").load("https://airgames.tk/mobile");
+      }
+    </script>
+  </body>
+</html>

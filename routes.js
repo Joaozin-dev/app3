@@ -7,6 +7,10 @@ const GameController = require("./Controller/GameController");
 
 const { UserInSession , UserNotSession } = require("./Middleware/UserMiddle");
 
+routes.get("/", (req, res) => {
+  res.render("index.html");
+});
+
 routes.get("/screen", (req, res) => {
   res.render("screen.html");
 });

@@ -8,7 +8,7 @@ module.exports = {
   },
   UserInSession(req,res,next){
     if(req.session.fb){
-      res.redirect("/");
+      res.redirect("/mobile");
     } else {
       next();
     }
