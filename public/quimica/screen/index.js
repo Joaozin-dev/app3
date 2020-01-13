@@ -14,11 +14,7 @@ socket.on("player-disconnected", function(data) {
   document.querySelector(`#${data.socket}`).innerHTML = "";
 });
 socket.on("new-player", function(data) {
-  console.log(data);
-  $('#nav-mobile').html($('#nav-mobile').html()+`<img id="${data.player.user}" src="${data.player.photo}" style = "width:25px; height:25; border-radius:50%;"`);
-});
-socket.on("controllers-ids", function(data) {
-  console.log(data);
+  Toast(`${data.player.name} se conectou`,'success');
 });
 function hello() {
   return socket;

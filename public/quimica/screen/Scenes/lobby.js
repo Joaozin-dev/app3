@@ -2,14 +2,15 @@ class Lobby extends Phaser.Scene{
     constructor(game){
         super("Lobby");
         this.gameapi = game;
-        this.player = 0;
     }
     preload(){}
     create(){
+        var player = 0;
         console.log(this.game);
         this.add.text(100,100,`WAITING FOR PLAYING`,{fontFamily: 'Arial'});
         this.gameapi.onReady((device_id)=>{
           this.gameapi.onPlayerConnect((player_id)=>{
+            console.log(player_id,"LOBBY")
             this.player++;
           });
         });

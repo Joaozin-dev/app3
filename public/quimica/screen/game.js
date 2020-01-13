@@ -7,10 +7,6 @@ import { ScreenAPI } from '/quimica/apis/gameapi.js';
 // INSTANCIAR A SCREEN
 var screen = new ScreenAPI();
 
-screen.onReady((device_id)=>{
-    screen.sendMessage(device_id,'hehehe boy');
-})
-
 // IMPORTAR API DE ADS
 import Ads from '/quimica/screen/ads.js';
 // INSTANCIAR TODAS AS FASES DO JOGO PASSANDO COMO PARAMETRO SCREEN
